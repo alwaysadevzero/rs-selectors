@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     //ничает сборку отсюда
-    entry: './src/index.js', 
+    entry: './src/index.ts', 
     output: { //собранные файлы ложит сюда
       path: path.resolve(__dirname, 'dist'),
       filename: 'index.js', 
