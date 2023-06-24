@@ -1,0 +1,7 @@
+.panel__button {
+    width: 15vw;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 0;
+}

@@ -1,4 +1,5 @@
 import BaseComponent from '../view'
+import EditorView from './editor/editor'
 
 export default class MainView extends BaseComponent {
     constructor() {
@@ -6,5 +7,6 @@ export default class MainView extends BaseComponent {
             className: 'container',
         }
         super(params)
+        this.append(new EditorView())
     }
 }
