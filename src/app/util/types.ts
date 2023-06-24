@@ -1,0 +1,1 @@
+type Listener<T = unknown> = (event?: T) => void;
