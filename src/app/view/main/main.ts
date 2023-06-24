@@ -1,6 +1,6 @@
 import BaseComponent from '../view'
 
-export default class mainView extends BaseComponent {
+export default class MainView extends BaseComponent {
     constructor() {
         const params = {
             className: 'container',
