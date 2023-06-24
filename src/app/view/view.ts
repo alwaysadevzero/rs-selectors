@@ -1,6 +1,6 @@
-export {ComponentProps} from './types'
+import {ComponentProps} from './types'
 
-class BaseComponent <T extends keyof HTMLElementTagNameMap = 'div'>{
+export default class BaseComponent <T extends keyof HTMLElementTagNameMap = 'div'>{
     public node: HTMLElement
     constructor({
       parent = null,
