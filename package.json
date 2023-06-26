@@ -1,10 +1,11 @@
 {
   "devDependencies": {
+    "@types/css-modules": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "add": "latest",
     "copy-webpack-plugin": "latest",
-    "css-loader": "latest",
+    "css-loader": "^6.8.1",
     "eslint": "latest",
     "eslint-config-airbnb-typescript": "latest",
     "eslint-config-prettier": "latest",
@@ -14,18 +15,19 @@
     "html-loader": "latest",
     "html-webpack-plugin": "latest",
     "prettier": "latest",
-    "style-loader": "latest",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
     "ts-loader": "latest",
     "typescript": "latest",
-    "webpack": "latest",
+    "webpack": "^5.88.0",
     "webpack-cli": "latest"
   },
   "dependencies": {
     "@picocss/pico": "^1.5.10",
     "pico-css": "^4.0.1",
-    "sass": "latest",
-    "sass-loader": "latest",
-    "sass-resources-loader": "latest",
+    "sass-embedded": "^1.63.6",
+    "sass-resources-loader": "^2.2.5",
     "webpack-dev-server": "latest"
   },
   "scripts": {
