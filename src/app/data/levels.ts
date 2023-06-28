@@ -1,4 +1,5 @@
-const levels = [
+import { levels } from "./interface";
+const levels: levels[] = [
     {   
         'name': 'Level 1: Basic Selectors',
         'selector-name': 'Type selector',
