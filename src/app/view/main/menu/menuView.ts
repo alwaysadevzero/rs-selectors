@@ -1,5 +1,6 @@
 import styles from './menu.module.css'
 import View from '../../view'
+import LevelsView from './levels/levelsView'
 
 export default class menuView extends View<'article'> {
     constructor() {
@@ -11,9 +12,7 @@ export default class menuView extends View<'article'> {
     }
 
     configureView() {
-        const description = new View({className: 'description'})
-        description.setContent('wdadwadawfwafwafawfWfawfwafawgfwa')
-        const helpButton = new View<'button'>({content: 'Reset', tag: 'button'});
-        this.append(description, helpButton)
+        const levels = new LevelsView()
+        this.append(levels)
     }
 }
