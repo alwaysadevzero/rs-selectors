@@ -1,9 +1,12 @@
 const levels = [
-    {
-        'id': '1',
-        'description': 'lalalala',
+    {   
         'name': 'ddadada',
-        'solution': '.da',
+        'selector-name': 'selector',
+        'title': 'title',
+        'syntax': 'blabla',
+        'hint': 'lalalala',
+        'example' : 'bobannyy',
+        'solution': 'plate',
         'html': '<plate></plate><plate><apple></apple></plate>'
     }
 ]
