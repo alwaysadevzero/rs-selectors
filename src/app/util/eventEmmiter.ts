@@ -1,25 +1,29 @@
-import {Listener} from './types';
+import { Listener } from './types';
+import { Events } from './events';
 
-class EventEmitter<T = unknown> {
-    private listeners: Record<string, Listener<T>[]> = {};
+class EventEmitter {
+  private listeners: Record<string, Listener[]> = {};
+  public events: typeof Events = Events; 
   
-    on(event: string, listener: Listener<T>): void {
-      if (!this.listeners[event]) {
-        this.listeners[event] = [];
-      }
-      this.listeners[event].push(listener);
+  on(event: Events, listener: Listener): void {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
     }
-  
-    off(event: string, listener: Listener<T>): void {
-      if (!this.listeners[event]) return;
-      const callbackIndex = this.listeners[event].indexOf(listener);
-      if (callbackIndex >= 0) {
-        this.listeners[event].splice(callbackIndex, 1);
-      }
-    }
-  
-    emit(event: string, data?: T): void {
-      if (!this.listeners[event]) return;
-      this.listeners[event].forEach((listener) => listener(data));
+    this.listeners[event].push(listener);
+  }
+
+  off(event: Events, listener: Listener): void {
+    if (!this.listeners[event]) return;
+    const callbackIndex = this.listeners[event].indexOf(listener);
+    if (callbackIndex >= 0) {
+      this.listeners[event].splice(callbackIndex, 1);
     }
   }
+
+  emit(event: Events, data?: unknown): void {
+    if (!this.listeners[event]) return;
+    this.listeners[event].forEach((listener) => listener(data));
+  }
+}
+
+export default new EventEmitter();

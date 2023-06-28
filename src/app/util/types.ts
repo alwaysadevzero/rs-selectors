@@ -1,1 +1,4 @@
-export type Listener<T = unknown> = (event?: T) => void;
+import { Events } from "./events";
+
+export type Listener = ( args: unknown ) => void;
+
