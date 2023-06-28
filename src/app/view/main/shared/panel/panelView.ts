@@ -1,5 +1,5 @@
-import BaseComponent from '../../view'
-import './panel-template.css'
+import View from '../../../view'
+import './panel.css'
 
 enum CssClasses {
     PANEL_TEMPLATE = 'panel',
@@ -8,7 +8,7 @@ enum CssClasses {
 
 }
 
-export default class PanelTemplate extends BaseComponent {
+export default class PanelView extends View {
     constructor(panelName: string, fileName: string) {
         const params = {
             className: CssClasses.PANEL_TEMPLATE,
@@ -20,13 +20,13 @@ export default class PanelTemplate extends BaseComponent {
 
     configureView(panelName: string, fileName: string) {
         if (panelName) {
-        const panelNameView = new BaseComponent({content: panelName})
+        const panelNameView = new View({content: panelName})
         panelNameView.addClass(CssClasses.PANEL_NAME)
         this.append(panelNameView)
         }
 
         if (fileName){
-        const fileNameView = new BaseComponent({content: fileName})
+        const fileNameView = new View({content: fileName})
         fileNameView.addClass(CssClasses.PANEL_FILENAME)
         this.append(fileNameView)
         }

@@ -1,8 +1,8 @@
-import BaseComponent from '../view'
-import EditorView from './editor/editor'
+import View from '../view'
+import EditorView from './editor/editorView'
 import menuView from './menu/menuView'
 
-export default class MainView extends BaseComponent {
+export default class MainView extends View {
     constructor() {
         const params = {
             className: 'container',
@@ -15,7 +15,6 @@ export default class MainView extends BaseComponent {
     configureView() {
         const editor = new EditorView()
         const menu = new menuView()
-        console.log(menu)
         this.append(editor, menu)
     }
 }

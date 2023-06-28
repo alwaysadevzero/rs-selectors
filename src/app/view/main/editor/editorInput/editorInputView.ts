@@ -1,5 +1,5 @@
-import styles from './editor-input.module.css'
-import BaseComponent from '../../../view'
+import styles from './editorInput.module.css'
+import View from '../../../view'
 
 const LINES_NUMBER = 20
 const TEXT_AREA = [
@@ -8,7 +8,7 @@ const TEXT_AREA = [
 ]
 
 
-export default class InputView extends BaseComponent<'article'> {
+export default class InputView extends View<'article'> {
     constructor() {
         super({
             tag: 'article', 
@@ -18,7 +18,7 @@ export default class InputView extends BaseComponent<'article'> {
     }
 
     configureView() {
-        const input = new BaseComponent<'input'>({
+        const input = new View<'input'>({
             tag: 'input', 
             className: styles.input
         })
@@ -26,21 +26,21 @@ export default class InputView extends BaseComponent<'article'> {
         const lines = this.configureLines()
         lines.node.firstChild?.appendChild(input.node)
 
-        const helpButton = new BaseComponent<'button'>({content: 'Enter', tag: 'button', className: styles.button});
+        const helpButton = new View<'button'>({content: 'Enter', tag: 'button', className: styles.button});
     
         this.append(lines, helpButton);
     }
 
-    configureLines(lineCount?: number): BaseComponent {
+    configureLines(lineCount?: number): View {
 
         const count = lineCount ?? LINES_NUMBER
-        const lines = new BaseComponent<'div'>({
+        const lines = new View<'div'>({
             tag: 'div', 
             className: styles.lines
         })
 
         for (let i = 0; i < count; i++) {
-            const line = new BaseComponent<'span'>({
+            const line = new View<'span'>({
                 tag: 'span', 
                 className: styles.line
             })

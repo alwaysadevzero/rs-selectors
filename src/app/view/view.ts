@@ -1,6 +1,6 @@
 import {ComponentProps} from './types'
 
-export default class BaseComponent <T extends keyof HTMLElementTagNameMap = 'div'>{
+export default class View <T extends keyof HTMLElementTagNameMap = 'div'>{
     public node: HTMLElement
     constructor({
       parent = null,
@@ -21,11 +21,11 @@ export default class BaseComponent <T extends keyof HTMLElementTagNameMap = 'div
       this.node.remove()
     }
   
-    appendTo(parent: HTMLElement | BaseComponent): void {
+    appendTo(parent: HTMLElement | View): void {
       parent.append(this.node)
     }
   
-    append(...components: (HTMLElement | BaseComponent)[]): void {
+    append(...components: (HTMLElement | View)[]): void {
       const nodes = components.map((component) => (component instanceof HTMLElement ? component : component.node))
       this.node.append(...nodes)
     }

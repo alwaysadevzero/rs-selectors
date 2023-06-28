@@ -1,6 +1,6 @@
-import BaseComponent from '../../component'
+import View from '../../view'
 
-export default class menuComponent extends BaseComponent<'article'> {
+export default class menuView extends View<'article'> {
     constructor() {
         super({
             tag: 'article',
@@ -10,9 +10,9 @@ export default class menuComponent extends BaseComponent<'article'> {
     }
 
     configureView() {
-        const description = new BaseComponent({className: 'description'})
+        const description = new View({className: 'description'})
         description.setContent('wdadwadawfwafwafawfWfawfwafawgfwa')
-        const helpButton = new BaseComponent<'button'>({content: 'Reset', tag: 'button'});
+        const helpButton = new View<'button'>({content: 'Reset', tag: 'button'});
         this.setAttributes({'data-theme': 'light'})
         this.append(description, helpButton)
     }
