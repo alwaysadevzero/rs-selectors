@@ -2,9 +2,9 @@ class ParserHtml extends DOMParser {
     constructor() {
         super()
     }
-    pasre(htmlString: string){
+    parse(htmlString: string): HTMLElement{
         const doc = this.parseFromString(htmlString, 'text/html')
-        return doc.body.firstChild
+        return doc.body.firstChild as HTMLElement
     }
 }
 
