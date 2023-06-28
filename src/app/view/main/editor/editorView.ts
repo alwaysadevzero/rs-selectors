@@ -6,10 +6,7 @@ import InputView from './editorInput/editorInputView'
 
 export default class EditorView extends View {
     constructor() {
-        const params = {
-            className: 'editor',
-        }
-        super(params)
+        super({})
         this.configureView()
     }
 

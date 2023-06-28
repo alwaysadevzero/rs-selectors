@@ -1,8 +1,0 @@
-.panelButton {
-    width: 15vw;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin: 0;
-    background-color: pink !important;
-}
