@@ -1,5 +1,5 @@
-import { levels } from "./interface";
-const levels: levels[] = [
+import { Itask } from "./interface";
+const levels: Itask[] = [
   {
     name: "Level 1: Basic Selectors",
     "selector-name": "Type selector",
