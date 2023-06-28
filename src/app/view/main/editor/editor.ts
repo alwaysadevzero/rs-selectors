@@ -1,7 +1,7 @@
 import styles from './editor.module.css'
 import BaseComponent from '../../view'
 import PanelTemplate from '../shared/panel-template'
-
+import InputView from './editor-input/editor-input'
 export default class EditorView extends BaseComponent {
     constructor() {
         const params = {
@@ -13,17 +13,19 @@ export default class EditorView extends BaseComponent {
 
     configureView() {
 
-        const helpButton = new BaseComponent<'button'>({content: 'Help', tag: 'button', className: styles.panelButton})
-        helpButton.setAttributes({'type': 'submit'})
+        // const helpButton = new BaseComponent<'button'>({content: 'Help', tag: 'button', className: styles.panelButton})
+        // helpButton.setAttributes({'type': 'submit'})
 
-        const editorHeader = new PanelTemplate('CSS Editor', '')
+        const editorHeader = new PanelTemplate('CSS Editor', 'Styles.css')
+        const editorInput = new InputView()
 
-        editorHeader.append(helpButton)
+        this.setAttributes({'data-theme': 'light'})
+
+        // editorHeader.append(helpButton)
         // editorHeader.node.insertBefore(helpButton.node, editorHeader.node.querySelector('.panel__filename'));
 
-        const editorInput = new BaseComponent<'input'>({tag: 'input', className: styles.panel__button})
-        editorInput.setAttributes({placeholder: 'Enter css selector'})
+        // const editorInput = new BaseComponent<'input'>({tag: 'input', className: styles.panelButton})
+        // editorInput.setAttributes({placeholder: 'Enter css selector'})
         this.append(editorHeader, editorInput)
     }
-
 }

@@ -1,0 +1,45 @@
+.field {
+    counter-reset: line;
+    padding: 0;
+    position: relative;
+    margin-top: 0;
+}
+
+.input {   
+    border: initial; 
+    box-shadow: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+}
+
+.lines{
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    display: flex;
+    color: rgba(0, 0, 0, 0.5);
+}
+.line:before {
+    color: #525050;
+    background-color: #DDD;
+
+    counter-increment: line;
+    content: counter(line);
+
+    margin-right: 1em;
+    width: 2em;
+
+    display: flex;
+    justify-content: space-around;
+    flex: 0 0 auto;
+}
+
+.button{
+    position: absolute;
+    max-width:fit-content;
+    right: 0;
+    top: 0;
+}
