@@ -1,3 +1,3 @@
 export enum Events {
-    CHECK_ANSWER
+  CHECK_ANSWER,
 }

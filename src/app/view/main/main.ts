@@ -1,9 +1,8 @@
-import styles from './main.module.css'
-import View from '../view'
-import EditorView from './editor/editorView'
-import menuView from './menu/menuView'
-import parserHtml from '../../util/parserHtml'
-
+import styles from "./main.module.css";
+import View from "../view";
+import EditorView from "./editor/editorView";
+import menuView from "./menu/menuView";
+import parserHtml from "../../util/parserHtml";
 
 const footerRawHTML = `
     <footer class="footer">
@@ -23,34 +22,33 @@ const footerRawHTML = `
     </footer>`;
 
 export default class MainView extends View {
-    constructor() {
-        const params = {
-            className: styles.app
-        }
-        super(params)
+  constructor() {
+    const params = {
+      className: styles.app,
+    };
+    super(params);
 
-    
-        this.configureView()
-    }
-    private configureView(): void {
+    this.configureView();
+  }
+  private configureView(): void {
+    const leftSide = new View({ className: styles.leftSide });
 
-        const leftSide = new View({className: styles.leftSide})
+    const title = new View({
+      tag: "h1",
+      className: styles.title,
+      content: "RS Selectors",
+    });
+    const editor = new EditorView();
+    const footer = parserHtml.parse(footerRawHTML);
 
-        const title = new View({tag: 'h1', className: styles.title, content: "RS Selectors"})
-        const editor = new EditorView()
-        const footer = parserHtml.parse(footerRawHTML)
+    leftSide.append(title, editor, footer);
 
+    const rightSide = new View({ className: styles.rightSide });
 
+    const menu = new menuView();
 
-        leftSide.append(title, editor, footer)
+    rightSide.append(menu);
 
-        
-        const rightSide = new View({className: styles.rightSide})
-
-        const menu = new menuView()
-
-        rightSide.append(menu)
-
-        this.append(leftSide,rightSide)
-    }
+    this.append(leftSide, rightSide);
+  }
 }

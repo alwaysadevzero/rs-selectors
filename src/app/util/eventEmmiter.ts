@@ -1,10 +1,10 @@
-import { Listener } from './types';
-import { Events } from './events';
+import { Listener } from "./types";
+import { Events } from "./events";
 
 class EventEmitter {
   private listeners: Record<string, Listener[]> = {};
-  public events: typeof Events = Events; 
-  
+  public events: typeof Events = Events;
+
   on(event: Events, listener: Listener): void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];

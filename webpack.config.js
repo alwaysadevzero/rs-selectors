@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
   entry: './src/index.ts',
@@ -63,6 +64,15 @@ module.exports = {
       filename: './index.html',
     }),
     new ESLintPlugin(),
+    new PrettierPlugin({
+      printWidth: 80,               // Указывает максимальную ширину строки
+      tabWidth: 2,                  // Указывает количество пробелов на табуляцию
+      useTabs: false,               // Индентация с использованием пробелов (false) или табуляции (true)
+      semi: true,                   // Использование точек с запятой в конце предложений
+      encoding: 'utf-8',            // Кодировка
+      extensions: [ ".js", ".ts" ], // Файлы с этими расширениями будут отформатированы
+      // ... вы можете указать другие настройки Prettier здесь ...
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js', '.json'],
