@@ -1,5 +1,6 @@
 import styles from './editorInput.module.css'
 import View from '../../../view'
+import eventEmmiter from '../../../../util/eventEmmiter'
 
 const LINES_NUMBER = 20
 const TEXT_AREA = [
@@ -26,9 +27,12 @@ export default class InputView extends View<'article'> {
         const lines = this.configureLines()
         lines.node.firstChild?.appendChild(input.node)
 
-        const helpButton = new View<'button'>({content: 'Enter', tag: 'button', className: styles.button});
+        const enterButton = new View<'button'>({content: 'Enter', tag: 'button', className: styles.button});
+        enterButton.addListener('click', () => {
+            eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, 'bb');
+        })
     
-        this.append(lines, helpButton);
+        this.append(lines, enterButton);
     }
 
     configureLines(lineCount?: number): View {
