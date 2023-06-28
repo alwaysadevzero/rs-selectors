@@ -1,3 +1,1 @@
-import { Events } from "./events";
-
-export type Listener = (args: unknown) => void;
+export type Listener = (args: any) => void;
