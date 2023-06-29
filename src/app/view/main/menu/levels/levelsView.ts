@@ -23,16 +23,14 @@ export default class LevelsView extends View<"article"> {
   }
 
   private configureView() {
-    const heading = new View({ content: "Choose a level" });
+    const heading = new View({
+      content: "Choose a level",
+      className: styles.choose,
+    });
 
     this.levels = new View({ className: styles.levels });
 
-    const resetButton = new View({
-      className: styles.resetButton,
-      tag: "button",
-      content: "Reset Progress",
-    });
-    this.append(heading, this.levels, resetButton);
+    this.append(heading, this.levels);
   }
 
   private isLevelParams(obj: unknown): obj is Level {

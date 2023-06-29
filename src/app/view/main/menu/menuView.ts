@@ -13,6 +13,13 @@ export default class menuView extends View<"article"> {
 
   configureView() {
     const levels = new LevelsView();
-    this.append(levels);
+
+    const resetButton = new View({
+      className: styles.resetButton,
+      tag: "button",
+      content: "Reset Progress",
+    });
+
+    this.append(levels, resetButton);
   }
 }
