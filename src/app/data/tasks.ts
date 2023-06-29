@@ -1,7 +1,8 @@
 import { Task } from "./interface";
+
 const tasks: Task[] = [
   {
-    name: "Level 1: Basic Selectors",
+    name: "Basic Selectors",
     "selector-name": "Type selector",
     title: "Select all plates",
     syntax: "plate",
@@ -11,7 +12,7 @@ const tasks: Task[] = [
     html: "<plate></plate><plate><apple></apple></plate>",
   },
   {
-    name: "Level 2: Child Selectors",
+    name: "Child Selectors",
     "selector-name": "Child selector",
     title: "Select apple on the plate",
     syntax: "plate > apple",
@@ -22,7 +23,7 @@ const tasks: Task[] = [
     html: "<plate><apple></apple></plate><plate></plate>",
   },
   {
-    name: "Level 3: Class Selectors",
+    name: "Class Selectors",
     "selector-name": "Class selector",
     title: "Select all red apples",
     syntax: ".red",
@@ -32,7 +33,7 @@ const tasks: Task[] = [
     html: '<apple class="red"></apple><apple></apple>',
   },
   {
-    name: "Level 4: Descendant Selectors",
+    name: "Descendant Selectors",
     "selector-name": "Descendant selector",
     title: "Select all apples in the plates",
     syntax: "plate apple",
@@ -42,7 +43,7 @@ const tasks: Task[] = [
     html: "<plate><apple></apple></plate><plate></plate>",
   },
   {
-    name: "Level 5: Multiple Selectors",
+    name: "Multiple Selectors",
     "selector-name": "Multiple selectors",
     title: "Select plates and apples",
     syntax: "plate, apple",
@@ -52,7 +53,7 @@ const tasks: Task[] = [
     html: "<plate></plate><apple></apple>",
   },
   {
-    name: "Level 6: ID Selectors",
+    name: "ID Selectors",
     "selector-name": "ID selector",
     title: 'Select the element with ID "special"',
     syntax: "#special",
@@ -62,7 +63,7 @@ const tasks: Task[] = [
     html: '<plate id="special"></plate><plate></plate>',
   },
   {
-    name: "Level 7: Pseudo-class Selectors",
+    name: "Pseudo-class Selectors",
     "selector-name": "Pseudo-class selector",
     title: "Select the first apple on a plate",
     syntax: "plate apple:first-child",
@@ -73,7 +74,7 @@ const tasks: Task[] = [
     html: "<plate><apple></apple><apple></apple></plate><plate></plate>",
   },
   {
-    name: "Level 8: Attribute Selectors",
+    name: "Attribute Selectors",
     "selector-name": "Attribute selector",
     title: 'Select all plates with a "for" attribute',
     syntax: "plate[for]",
@@ -83,7 +84,7 @@ const tasks: Task[] = [
     html: '<plate for="picnic"></plate><plate></plate>',
   },
   {
-    name: "Level 9: Universal Selectors",
+    name: "Universal Selectors",
     "selector-name": "Universal selector",
     title: "Select all elements",
     syntax: "*",
@@ -93,7 +94,7 @@ const tasks: Task[] = [
     html: "<plate></plate><apple></apple>",
   },
   {
-    name: "Level 10: Pseudo-elements Selectors",
+    name: "Pseudo-elements Selectors",
     "selector-name": "Pseudo-elements selector",
     title: "Select the first letter of every apple",
     syntax: "apple::first-letter",
