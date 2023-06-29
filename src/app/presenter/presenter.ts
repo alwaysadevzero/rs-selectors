@@ -10,14 +10,15 @@ export default class Presenter {
   }
 
   private init() {
-    this.addListeners();
+    // this.addListeners();
+    this.updateLevels();
   }
 
-  addListeners() {
-    EventEmitter.on(EventEmitter.events.CHECK_ANSWER, this.gg);
+  private updateLevels() {
+    EventEmitter.emit(EventEmitter.events.DRAW_LEVELS, this.model.levels);
   }
 
-  gg(...args: unknown[]): void {
-    console.log(args);
-  }
+//   private addListeners() {
+//     EventEmitter.on(EventEmitter.events.CHECK_ANSWER, this.gg);
+//   }
 }
