@@ -2,7 +2,7 @@ import styles from "./levels.module.css";
 import View from "../../../view";
 import eventEmmiter from "../../../../util/eventEmmiter";
 import LevelView from "./level/level";
-import { levelParams } from "./types";
+import { Level } from "./inteface";
 import { LevelStatus } from "../../../../model/enums";
 
 export default class LevelsView extends View<"article"> {
@@ -34,17 +34,18 @@ export default class LevelsView extends View<"article"> {
     });
     this.append(heading, this.levels, resetButton);
   }
-  
-  private isLevelParams(obj: unknown): obj is levelParams {
+
+  private isLevelParams(obj: unknown): obj is Level {
     return (
       typeof obj === "object" &&
       obj !== null &&
       "status" in obj &&
-      "levelName" in obj
+      "name" in obj &&
+      "position" in obj
     );
   }
 
-  private drawLevels(levels: levelParams[]): void {
+  private drawLevels(levels: Level[]): void {
     if (
       !Array.isArray(levels) ||
       !levels.every((level) => this.isLevelParams(level))
@@ -55,6 +56,6 @@ export default class LevelsView extends View<"article"> {
       this.levels.node.removeChild(this.levels.node.firstChild);
     }
 
-    levels.forEach((level) => this.levels.append(new LevelView(level)))
+    levels.forEach((level) => this.levels.append(new LevelView(level)));
   }
 }

@@ -1,7 +1,7 @@
 import { LevelStatus } from "../../../../model/enums";
 
-export type levelParams = {
+export interface Level {
   status: LevelStatus;
-  position?: number;
+  position: number;
   name: string;
-};
+}

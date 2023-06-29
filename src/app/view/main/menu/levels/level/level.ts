@@ -1,16 +1,16 @@
 import styles from "./level.module.css";
 import View from "../../../../view";
-import { levelParams } from "../types";
+import { Level } from "../inteface";
 
 export default class LevelView extends View<"article"> {
-  constructor(params: levelParams) {
+  constructor(params: Level) {
     super({
       className: styles.level,
     });
     this.configureView(params);
   }
 
-  configureView(params: levelParams) {
+  configureView(params: Level) {
     this.addClass(params.status);
     console.log(params);
 
