@@ -1,5 +1,5 @@
-import { Itask } from "./interface";
-const levels: Itask[] = [
+import { Task } from "./interface";
+const tasks: Task[] = [
   {
     name: "Level 1: Basic Selectors",
     "selector-name": "Type selector",
@@ -104,4 +104,4 @@ const levels: Itask[] = [
   },
 ];
 
-export default levels;
+export default tasks;

@@ -1,4 +1,4 @@
-export interface levels {
+export interface Task {
   name: string;
   "selector-name": string;
   title: string;
