@@ -1,32 +1,31 @@
 import tasks from "../data/tasks";
 import { LevelStatus } from "./enums";
-import { Level } from "../view/main/menu/levels/inteface";
+
 import { Task } from "../data/interface";
 import { State } from "./interface";
 
 export default class Model {
   private tasks: Task[] = tasks;
-  private states!: State[];
+  protected states!: State[];
+
+  constructor() {
+    this.loadStates();
+  }
+
+  public loadStates(): State[] {
+    if (!this.states) {
+      this.states = this.loadSetup();
+    }
+    return this.states;
+  }
 
   public loadSetup = () => {
     const states = localStorage.getItem("states") || "";
     if (states) {
-      this.states = JSON.parse(states);
-      return;
+      return JSON.parse(states);
     }
-    this.states = this.firstload(this.tasks);
-    console.log(this.states);
+    return this.firstload(this.tasks);
   };
-
-  public getLevels(): Level[] {
-    return this.states.map((state) => {
-      return {
-        status: state.status,
-        position: state.position,
-        name: state.name,
-      };
-    });
-  }
 
   private firstload = (tasks: Task[]): State[] => {
     const state = this.tasks.map((task, index) => {

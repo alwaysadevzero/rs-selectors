@@ -1,13 +1,11 @@
 import "./styles/reset.css";
 import "./styles/styles.css";
 import mainView from "./app/view/main/main";
-import Presenter from "./app/presenter/presenter";
-import Model from "./app/model/model";
+import LevelPresenter from "./app/presenter/levelsPresenter";
 class app {
   constructor() {
     this.configureView();
-    const model = new Model();
-    const presenter = new Presenter(model);
+    const levelsPresenter = new LevelPresenter();
   }
   configureView() {
     const view = new mainView();
