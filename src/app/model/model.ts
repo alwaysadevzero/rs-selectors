@@ -30,7 +30,7 @@ export default class Model {
   private firstload = (tasks: Task[]): State[] => {
     const state = this.tasks.map((task, index) => {
       return Object.assign(
-        { status: LevelStatus.UNUSED, position: index },
+        { status: LevelStatus.UNUSED, position: index + 1 },
         task
       );
     });
