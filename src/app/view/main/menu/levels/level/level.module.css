@@ -1,3 +1,27 @@
-.level {
-    
+.level{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    justify-content: flex-start;
+    user-select: none;
+}
+
+.position{
+    font-size: 1rem;
+}
+
+.level.current{
+    background-color: var(--current-color);
+}
+.level.skipped{
+    background-color: var(--skipped-color);
+}
+
+.level.passed{
+    background-color: var(--passed--color);
+}
+
+.name {
+    margin-left: 10px;
+    white-space: nowrap;
 }

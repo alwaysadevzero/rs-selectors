@@ -11,14 +11,19 @@ export default class LevelView extends View<"article"> {
   }
 
   configureView(params: Level) {
-    this.addClass(params.status);
-    console.log(params);
+    const className = params.status;
+    this.addClass(styles[className]);
 
     const position = new View({
       content: params.position?.toString(),
       tag: "span",
+      className: styles.position,
     });
-    const levelName = new View({ tag: "span", content: params.name });
+    const levelName = new View({
+      tag: "span",
+      content: params.name,
+      className: styles.name,
+    });
 
     this.append(position, levelName);
   }
