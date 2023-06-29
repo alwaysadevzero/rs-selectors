@@ -1,3 +1,9 @@
+:root{
+    --skipped-color: #631b19;
+    --current-color: #3a3a3a;
+    --passed--color: #003d03;
+}
+
 .page {
     height: 100vh;
     display: flex;
