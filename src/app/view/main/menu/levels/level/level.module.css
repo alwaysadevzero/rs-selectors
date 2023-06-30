@@ -31,6 +31,9 @@
 .passed::before{
     border-color: var(--passed--color);
 }
+.pending{
+    
+}
 
 .name {
     margin-left: 10px;
