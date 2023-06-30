@@ -2,6 +2,9 @@ import styles from "./html.module.css";
 import View from "../../view";
 import PanelView from "../shared/panel/panelView";
 import eventEmmiter from "../../../util/eventEmmiter";
+import parserHtml from "../../../util/parserHtml";
+import hljs from "highlight.js";
+import "./highlights.css";
 
 export default class HtmlView extends View {
   private code!: View;
@@ -16,7 +19,20 @@ export default class HtmlView extends View {
   }
 
   private drawHtmlCode = (html: HTMLElement): void => {
-    this.code.node.innerText = html.outerHTML;
+    while (this.code.node.firstChild) {
+      this.code.node.removeChild(this.code.node.firstChild);
+    }
+
+    const highLighterClass = hljs.highlight(html.outerHTML, {
+      language: "html",
+    });
+
+    // const node = parserHtml.parse(highLighterClass.value);
+
+    console.log(html);
+    console.log(highLighterClass.value);
+    // console.log(node);
+    this.code.node.innerHTML = highLighterClass.value;
   };
 
   configureView() {
@@ -27,9 +43,11 @@ export default class HtmlView extends View {
     const htmlCode = new View({ tag: "article", className: "html" });
     htmlCode.addClass(styles.htmlCode);
 
-    this.code = new View({ tag: "code", className: styles.code });
+    const code = new View({ tag: "code", className: styles.code });
+    this.code = new View({ tag: "pre", className: styles.pre });
+    code.append(this.code);
 
-    htmlCode.append(this.code);
+    htmlCode.append(code);
 
     this.setAttributes({ "data-theme": "light" });
 

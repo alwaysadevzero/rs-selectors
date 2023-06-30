@@ -9,7 +9,12 @@ const tasks: Task[] = [
     hint: "Select every <plate> element on the page.",
     example: "plate selects all <plate> elements.",
     solution: "plate",
-    html: "<plate></plate><plate><apple></apple></plate>",
+    html: `
+      <plate></plate>
+      <plate>
+        <apple></apple>
+      </plate>
+    `,
   },
   {
     name: "Child Selectors",

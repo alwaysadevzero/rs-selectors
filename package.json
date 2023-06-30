@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@picocss/pico": "^1.5.10",
+    "highlight.js": "^11.8.0",
     "pico-css": "^4.0.1",
     "sass-embedded": "^1.63.6",
     "sass-resources-loader": "^2.2.5",
