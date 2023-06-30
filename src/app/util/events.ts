@@ -1,4 +1,6 @@
 export enum Events {
   CHECK_ANSWER,
+  SWITCH_LEVEL,
   DRAW_LEVELS,
+  DRAW_SWITCH_LEVEL,
 }
