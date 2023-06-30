@@ -18,21 +18,23 @@ export default class HtmlView extends View {
     eventEmmiter.on(eventEmmiter.events.DRAW_HTML_CODE, this.drawHtmlCode);
   }
 
-  private drawHtmlCode = (html: HTMLElement): void => {
+  private drawHtmlCode = (html: string): void => {
     while (this.code.node.firstChild) {
       this.code.node.removeChild(this.code.node.firstChild);
     }
 
-    const highLighterClass = hljs.highlight(html.outerHTML, {
+    const highLightercode: string = hljs.highlight(html, {
       language: "html",
+    }).value;
+
+    const lines = highLightercode.split("\n");
+    const wrappedCode = lines.map((line, index) => {
+      return `<span class="line" data-line-number="${
+        index + 1
+      }">${line}</span>`;
     });
-
-    // const node = parserHtml.parse(highLighterClass.value);
-
-    console.log(html);
-    console.log(highLighterClass.value);
-    // console.log(node);
-    this.code.node.innerHTML = highLighterClass.value;
+    const highLightedCode = wrappedCode.join("\n");
+    this.code.node.innerHTML = highLightedCode;
   };
 
   configureView() {
@@ -40,7 +42,7 @@ export default class HtmlView extends View {
 
     const editorHeader = new PanelView("HTML Viewer", "table.html");
 
-    const htmlCode = new View({ tag: "article", className: "html" });
+    const htmlCode = new View({ tag: "article", className: styles.html });
     htmlCode.addClass(styles.htmlCode);
 
     const code = new View({ tag: "code", className: styles.code });

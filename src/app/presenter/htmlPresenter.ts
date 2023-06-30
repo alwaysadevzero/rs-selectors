@@ -16,7 +16,7 @@ export default class HtmlPresenter extends Presenter {
   };
 
   private updateHtml = (): void => {
-    const htmlcode = HtmlModel.getHtml();
+    const htmlcode: string = HtmlModel.getHtml();
     this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlcode);
   };
 }
