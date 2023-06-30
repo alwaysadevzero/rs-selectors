@@ -3,7 +3,7 @@ class ParserHtml extends DOMParser {
     super();
   }
   parse(htmlString: string): HTMLElement {
-    const doc = this.parseFromString(htmlString, "text/html");
+    const doc = this.parseFromString(`<div>${htmlString}</div>`, "text/html");
     return doc.body.firstChild as HTMLElement;
   }
 }
