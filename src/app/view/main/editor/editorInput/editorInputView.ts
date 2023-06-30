@@ -5,6 +5,7 @@ import eventEmmiter from "../../../../util/eventEmmiter";
 const LINES_NUMBER = 20;
 const TEXT_AREA = [
   "",
+  "",
   "{",
   "/* Styles would go here. */",
   "}",
