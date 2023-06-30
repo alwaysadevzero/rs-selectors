@@ -6,7 +6,8 @@ import { Level } from "./inteface";
 import { LevelStatus } from "../../../../model/enums";
 
 export default class LevelsView extends View<"article"> {
-  private levels!: View;
+  private levelsWrapper!: View;
+  private levelsArr: LevelView[] = [];
 
   constructor() {
     super({
@@ -20,6 +21,7 @@ export default class LevelsView extends View<"article"> {
       eventEmmiter.events.DRAW_LEVELS,
       this.drawLevels.bind(this)
     );
+    eventEmmiter.on(eventEmmiter.events.DRAW_SWITCH_LEVEL, this.switchLevel);
   }
 
   private configureView() {
@@ -28,9 +30,9 @@ export default class LevelsView extends View<"article"> {
       className: styles.choose,
     });
 
-    this.levels = new View({ className: styles.levels });
+    this.levelsWrapper = new View({ className: styles.levels });
 
-    this.append(heading, this.levels);
+    this.append(heading, this.levelsWrapper);
   }
 
   private isLevelParams(obj: unknown): obj is Level {
@@ -43,17 +45,37 @@ export default class LevelsView extends View<"article"> {
     );
   }
 
-  private drawLevels(levels: Level[]): void {
+  private switchLevel = (params: {
+    previoisLevelIndex: number;
+    newLevelIndex: number;
+  }): void => {
+    const { previoisLevelIndex, newLevelIndex } = params;
+    this.levelsArr[previoisLevelIndex].removeHighLightLevel();
+    this.levelsArr[newLevelIndex].highLightLevel();
+  };
+
+  private drawLevels(params: {
+    currentLevelIndex: Number;
+    levels: Level[];
+  }): void {
+    const { currentLevelIndex, levels } = params;
+
     if (
       !Array.isArray(levels) ||
       !levels.every((level) => this.isLevelParams(level))
     ) {
       throw new Error("invalid passed parameters to drawLevels");
     }
-    while (this.levels.node.firstChild) {
-      this.levels.node.removeChild(this.levels.node.firstChild);
+
+    while (this.levelsWrapper.node.firstChild) {
+      this.levelsWrapper.node.removeChild(this.levelsWrapper.node.firstChild);
     }
 
-    levels.forEach((level) => this.levels.append(new LevelView(level)));
+    levels.map((level, index) => {
+      const lvl = new LevelView(level);
+      if (index === currentLevelIndex) lvl.highLightLevel();
+      this.levelsArr.push(lvl);
+    });
+    this.levelsWrapper.append(...this.levelsArr);
   }
 }
