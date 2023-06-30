@@ -10,19 +10,12 @@ export default class EditorView extends View {
   }
 
   configureView() {
-    // const helpButton = new View<'button'>({content: 'Help', tag: 'button', className: styles.panelButton})
-    // helpButton.setAttributes({'type': 'submit'})
-
     const editorHeader = new PanelView("CSS Editor", "Styles.css");
     const editorInput = new InputView();
 
     this.setAttributes({ "data-theme": "light" });
+    this.addClass(styles.editor);
 
-    // editorHeader.append(helpButton)
-    // editorHeader.node.insertBefore(helpButton.node, editorHeader.node.querySelector('.panel__filename'));
-
-    // const editorInput = new View<'input'>({tag: 'input', className: styles.panelButton})
-    // editorInput.setAttributes({placeholder: 'Enter css selector'})
     this.append(editorHeader, editorInput);
   }
 }
