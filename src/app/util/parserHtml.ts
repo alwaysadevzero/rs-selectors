@@ -1,10 +1,13 @@
-class ParserHtml extends DOMParser {
-  constructor() {
-    super();
-  }
-  parse(htmlString: string): HTMLElement {
-    const doc = this.parseFromString(`<div>${htmlString}</div>`, "text/html");
-    return doc.body.firstChild as HTMLElement;
+import sanitizeHtml from "sanitize-html";
+class ParserHtml {
+  parse(htmlString: string): string {
+    const markup = sanitizeHtml(htmlString, {
+      allowedClasses: {
+        "*": ["*"],
+      },
+    });
+    console.log(markup);
+    return markup;
   }
 }
 

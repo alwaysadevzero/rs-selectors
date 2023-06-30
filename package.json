@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/css-modules": "^1.0.2",
+    "@types/sanitize-html": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "add": "latest",
@@ -28,6 +29,7 @@
     "@picocss/pico": "^1.5.10",
     "highlight.js": "^11.8.0",
     "pico-css": "^4.0.1",
+    "sanitize-html": "^2.11.0",
     "sass-embedded": "^1.63.6",
     "sass-resources-loader": "^2.2.5",
     "webpack-dev-server": "latest"
