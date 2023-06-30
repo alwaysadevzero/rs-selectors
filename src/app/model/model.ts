@@ -6,8 +6,24 @@ import { State } from "./interface";
 
 export default class Model {
   private tasks: Task[] = tasks;
-  protected states!: State[];
-  protected currentStateIndex!: number;
+  static states: State[];
+  static currentIndex: number;
+
+  get states(): State[] {
+    return Model.states;
+  }
+
+  set states(states: State[]) {
+    Model.states = states;
+  }
+
+  get currentIndex(): number {
+    return Model.currentIndex;
+  }
+
+  set currentIndex(index: number) {
+    Model.currentIndex = index;
+  }
 
   constructor() {
     this.loadStates();
@@ -35,7 +51,7 @@ export default class Model {
         task
       );
     });
-    this.currentStateIndex = 0;
+    this.currentIndex = 0;
     return state;
   };
 }
