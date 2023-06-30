@@ -5,8 +5,6 @@ import { Level } from "../view/main/menu/levels/inteface";
 export default class LevelPresenter extends Presenter {
   constructor() {
     super();
-    this.updateLevels = this.updateLevels.bind(this);
-    this.switchLevel = this.switchLevel.bind(this);
     this.updateLevels();
     this.addListener();
   }
