@@ -1,4 +1,5 @@
 import styles from "./main.module.css";
+import "./main.css";
 import View from "../view";
 import EditorView from "./editor/editorView";
 import HtmlView from "./html/htmlView";
@@ -6,21 +7,19 @@ import menuView from "./menu/menuView";
 import parserHtml from "../../util/parserHtml";
 
 const footerRawHTML = `
-    <footer class="footer">
-        <div class="container">
-            <ul class="footer__links">
-                <li>
-                    <a href="https://rs.school/" class="contrast">© 2022 The Rolling Scopes</a>
-                </li>
-                <li>
-                    <a href="https://github.com/alwaysadevzero" class="contrast secondary">Author</a>
-                </li>
-                <li>
-                    <a href="" class="contrast">RS selectors 2023</a>
-                </li>
-            </ul>
-        </div>
-    </footer>`;
+  <div class="container">
+      <ul class="footer__links">
+          <li>
+              <a href="https://rs.school/" class="contrast">© 2022 The Rolling Scopes</a>
+          </li>
+          <li>
+              <a href="https://github.com/alwaysadevzero" class="contrast secondary">Author</a>
+          </li>
+          <li>
+              <a href="" class="contrast">RS selectors 2023</a>
+          </li>
+      </ul>
+  </div>`;
 
 export default class MainView extends View {
   constructor() {
@@ -45,8 +44,9 @@ export default class MainView extends View {
     const wrapper = new View({ className: styles.wrapper });
     wrapper.append(editor, html);
 
-    const footer = parserHtml.parse(footerRawHTML);
+    const footer = new View({ tag: "footer", className: styles.footer });
 
+    footer.node.innerHTML = parserHtml.parse(footerRawHTML);
     leftSide.append(title, wrapper, footer);
 
     const rightSide = new View({ className: styles.rightSide });
