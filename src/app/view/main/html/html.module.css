@@ -8,3 +8,23 @@
     margin-top: 0;
     background-color: var(--secondary)
 }
+
+/* .pre {
+    counter-reset: line;
+    position: relative;
+    padding: 35px;
+}
+
+.pre > span:before {
+    position: absolute;
+    left: 0;
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 30px;
+    border-right: 1px solid #ddd;
+    padding: 0 5px;
+    margin-right: 5px;
+    text-align: right;
+} */
+  
