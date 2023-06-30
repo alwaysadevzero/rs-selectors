@@ -34,7 +34,7 @@ export default class HtmlView extends View {
       }">${line}</span>`;
     });
     const highLightedCode = wrappedCode.join("\n");
-    this.code.node.innerHTML = highLightedCode;
+    this.code.node.innerHTML = parserHtml.parse(highLightedCode);
   };
 
   configureView() {
