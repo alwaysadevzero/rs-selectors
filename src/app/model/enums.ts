@@ -1,6 +1,5 @@
 export enum LevelStatus {
   SKIPPED = "skipped",
-  CURRENT = "current",
-  UNUSED = "unused",
+  PENDING = "pending",
   PASSED = "passed",
 }

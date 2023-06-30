@@ -7,6 +7,7 @@ import { State } from "./interface";
 export default class Model {
   private tasks: Task[] = tasks;
   protected states!: State[];
+  protected currentStateIndex!: number;
 
   constructor() {
     this.loadStates();
@@ -30,11 +31,11 @@ export default class Model {
   private firstload = (tasks: Task[]): State[] => {
     const state = this.tasks.map((task, index) => {
       return Object.assign(
-        { status: LevelStatus.UNUSED, position: index + 1 },
+        { status: LevelStatus.PENDING, position: index + 1 },
         task
       );
     });
-    state[0].status = LevelStatus.CURRENT;
+    this.currentStateIndex = 0;
     return state;
   };
 }
