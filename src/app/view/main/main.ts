@@ -1,6 +1,7 @@
 import styles from "./main.module.css";
 import View from "../view";
 import EditorView from "./editor/editorView";
+import HtmlView from "./html/htmlView";
 import menuView from "./menu/menuView";
 import parserHtml from "../../util/parserHtml";
 
@@ -39,9 +40,14 @@ export default class MainView extends View {
       content: "RS Selectors",
     });
     const editor = new EditorView();
+    const html = new HtmlView();
+
+    const wrapper = new View({ className: styles.wrapper });
+    wrapper.append(editor, html);
+
     const footer = parserHtml.parse(footerRawHTML);
 
-    leftSide.append(title, editor, footer);
+    leftSide.append(title, wrapper, footer);
 
     const rightSide = new View({ className: styles.rightSide });
 

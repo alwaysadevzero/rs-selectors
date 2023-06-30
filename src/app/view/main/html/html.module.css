@@ -1,0 +1,10 @@
+.html{
+    flex-grow: 0.5;
+    max-width: 550px;
+    
+}
+
+.htmlCode{
+    margin-top: 0;
+    background-color: var(--secondary)
+}

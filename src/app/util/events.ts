@@ -3,4 +3,5 @@ export enum Events {
   SWITCH_LEVEL,
   DRAW_LEVELS,
   DRAW_SWITCH_LEVEL,
+  DRAW_HTML_CODE,
 }
