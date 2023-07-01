@@ -2,6 +2,7 @@ import Presenter from "./presenter";
 import HtmlModel from "../model/htmlModel";
 
 export default class HtmlPresenter extends Presenter {
+  private htmlModel = new HtmlModel();
   constructor() {
     super();
     this.updateHtml();
@@ -16,7 +17,7 @@ export default class HtmlPresenter extends Presenter {
   };
 
   private updateHtml = (): void => {
-    const htmlcode: string = HtmlModel.getHtml();
+    const htmlcode: string = this.htmlModel.getHtml();
     this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlcode);
   };
 }

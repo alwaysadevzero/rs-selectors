@@ -1,11 +1,10 @@
 import Model from "./model";
-import parserHtml from "../util/parserHtml";
 
-class HtmlModel extends Model {
+export default class HtmlModel extends Model {
+  protected htmlString!: string;
+
   public getHtml(): string {
-    const htmlString = this.states[this.currentIndex].html;
-    return htmlString;
+    this.htmlString = this.states[this.currentIndex].html;
+    return this.htmlString;
   }
 }
-
-export default new HtmlModel();

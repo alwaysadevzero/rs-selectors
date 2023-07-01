@@ -6,7 +6,7 @@ import parserHtml from "../../../util/parserHtml";
 import hljs from "highlight.js";
 import "./highlights.css";
 
-const LINES_NUMBER = 20;
+const LINES_NUMBER = 15;
 
 export default class HtmlView extends View {
   private code!: View;
