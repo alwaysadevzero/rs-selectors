@@ -2,7 +2,7 @@ import styles from "./editorInput.module.css";
 import View from "../../../view";
 import eventEmmiter from "../../../../util/eventEmmiter";
 
-const LINES_NUMBER = 20;
+const LINES_NUMBER = 15;
 const TEXT_AREA = [
   "",
   "",
