@@ -46,11 +46,11 @@ export default class LevelsView extends View<"article"> {
   }
 
   private switchLevel = (params: {
-    previoisLevelIndex: number;
+    previousLevelIndex: number;
     newLevelIndex: number;
   }): void => {
-    const { previoisLevelIndex, newLevelIndex } = params;
-    this.levelsArr[previoisLevelIndex].removeHighLightLevel();
+    const { previousLevelIndex, newLevelIndex } = params;
+    this.levelsArr[previousLevelIndex].removeHighLightLevel();
     this.levelsArr[newLevelIndex].highLightLevel();
   };
 
