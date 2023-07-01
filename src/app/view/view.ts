@@ -33,7 +33,7 @@ export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
 
   addListener(
     eventName: keyof GlobalEventHandlersEventMap,
-    callback: () => void
+    callback: (event?: Event) => void
   ): void {
     this.node.addEventListener(eventName, callback);
   }
