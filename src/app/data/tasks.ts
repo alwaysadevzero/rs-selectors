@@ -10,9 +10,9 @@ const tasks: Task[] = [
     example: "plate selects all <plate> elements.",
     solution: "plate",
     html: `<plate></plate>
-  <plate>
-        <apple></apple>
-      </plate>
+<plate>
+  <apple></apple>
+</plate>
     `,
   },
   {
@@ -24,7 +24,11 @@ const tasks: Task[] = [
     example:
       "plate > apple selects any <apple> elements directly on a <plate>.",
     solution: "plate > apple",
-    html: "<plate><apple></apple></plate><plate></plate>",
+    html: `<plate>
+  <apple></apple>
+</plate>
+<plate></plate>
+`,
   },
   {
     name: "Class Selectors",
@@ -34,7 +38,8 @@ const tasks: Task[] = [
     hint: 'Select all elements with class="red".',
     example: '.red selects all elements with class="red".',
     solution: ".red",
-    html: '<apple class="red"></apple><apple></apple>',
+    html: `<apple class="red"></apple>
+<apple></apple>`,
   },
   {
     name: "Descendant Selectors",
@@ -44,7 +49,10 @@ const tasks: Task[] = [
     hint: "Select all <apple> elements inside <plate> elements.",
     example: "plate apple selects all <apple> elements inside any <plate>.",
     solution: "plate apple",
-    html: "<plate><apple></apple></plate><plate></plate>",
+    html: `<plate>
+ <apple></apple>
+</plate>
+<plate></plate>`,
   },
   {
     name: "Multiple Selectors",
@@ -54,7 +62,8 @@ const tasks: Task[] = [
     hint: "Select all <plate> elements and all <apple> elements.",
     example: "plate, apple selects all <plate> and <apple> elements.",
     solution: "plate, apple",
-    html: "<plate></plate><apple></apple>",
+    html: `<plate></plate>
+<apple></apple>`,
   },
   {
     name: "ID Selectors",
@@ -64,7 +73,8 @@ const tasks: Task[] = [
     hint: 'Selects the element with id="special".',
     example: '#special selects any element with id="special".',
     solution: "#special",
-    html: '<plate id="special"></plate><plate></plate>',
+    html: `<plate id="special"></plate>
+<plate></plate>`,
   },
   {
     name: "Pseudo-class Selectors",
@@ -75,7 +85,11 @@ const tasks: Task[] = [
     example:
       "plate apple:first-child selects the first <apple> that is a direct child of any <plate>.",
     solution: "plate apple:first-child",
-    html: "<plate><apple></apple><apple></apple></plate><plate></plate>",
+    html: `<plate>
+  <apple></apple>
+  <apple></apple>
+</plate>
+<plate></plate>`,
   },
   {
     name: "Attribute Selectors",
@@ -85,7 +99,8 @@ const tasks: Task[] = [
     hint: 'Selects every <plate> element that has a "for" attribute.',
     example: 'plate[for] selects every <plate> with a "for" attribute.',
     solution: "plate[for]",
-    html: '<plate for="picnic"></plate><plate></plate>',
+    html: `<plate for="picnic"></plate>
+<plate></plate>`,
   },
   {
     name: "Universal Selectors",
@@ -95,7 +110,8 @@ const tasks: Task[] = [
     hint: "Selects all elements.",
     example: "* selects every element.",
     solution: "*",
-    html: "<plate></plate><apple></apple>",
+    html: `<plate></plate>
+<apple></apple>`,
   },
   {
     name: "Pseudo-elements Selectors",
@@ -105,7 +121,8 @@ const tasks: Task[] = [
     hint: "Selects the first letter of every <apple> element.",
     example: "apple::first-letter selects the first letter of every <apple>.",
     solution: "apple::first-letter",
-    html: "<apple>Red</apple><apple>Green</apple>",
+    html: `<apple></apple>
+<apple></apple>`,
   },
 ];
 
