@@ -14,7 +14,8 @@ export default class LevelPresenter extends Presenter {
 
   private addListener = () => {
     this.on.switchLevel(this.switchLevel);
-    this.on.passedLevel(this.passedLevel);
+    this.on.passLevel(this.passLevel);
+    this.on.skipLevel(this.skipLevel);
   };
 
   private updateAll = (): void => {
@@ -40,12 +41,19 @@ export default class LevelPresenter extends Presenter {
     }
   };
 
-  private passedLevel = (): void => {
-    this.levelsModel.passedLevel();
+  private passLevel = (): void => {
+    this.levelsModel.passLevel();
     const status = this.levelsModel.getLevelStatus();
     const index = this.levelsModel.currentIndex;
     this.emit.drawLevelStatus({ status, index });
     setTimeout(this.nextLevel, 1000);
+  };
+
+  private skipLevel = (): void => {
+    this.levelsModel.skipLevel();
+    const status = this.levelsModel.getLevelStatus();
+    const index = this.levelsModel.currentIndex;
+    this.emit.drawLevelStatus({ status, index });
   };
 
   private nextLevel = (): void => {

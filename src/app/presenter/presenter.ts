@@ -30,7 +30,7 @@ export default class Presenter {
         levels,
       }),
 
-    updatePassedLevel: (): void =>
+    updatepassLevel: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL),
     updateHtml: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML),
@@ -48,7 +48,9 @@ export default class Presenter {
       this.eventEmmiter.on(this.eventEmmiter.events.CHECK_ANSWER, func),
     switchLevel: (func: (arg: Level) => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.SWITCH_LEVEL, func),
-    passedLevel: (func: () => void): void =>
+    passLevel: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.PASSED_LEVEL, func),
+    skipLevel: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.SKIP_LEVEL, func),
   };
 }

@@ -10,6 +10,7 @@ const LINES_NUMBER = 15;
 
 export default class HtmlView extends View {
   private code!: View;
+  private helpButton!: View;
   constructor() {
     super({});
     this.configureView();
@@ -18,6 +19,10 @@ export default class HtmlView extends View {
 
   private addEventListener() {
     eventEmmiter.on(eventEmmiter.events.DRAW_HTML_CODE, this.drawHtmlCode);
+
+    this.helpButton.addListener("click", () =>
+      eventEmmiter.emit(eventEmmiter.events.SKIP_LEVEL)
+    );
   }
 
   private drawHtmlCode = (html: string): void => {
@@ -60,6 +65,14 @@ export default class HtmlView extends View {
     htmlCode.append(code);
 
     this.setAttributes({ "data-theme": "light" });
+
+    this.helpButton = new View({
+      tag: "button",
+      className: styles.helpButton,
+      content: "Help",
+    });
+
+    htmlCode.append(this.helpButton);
 
     this.append(editorHeader, htmlCode);
   }

@@ -29,8 +29,12 @@ export default class LevelsModel extends Model {
     return false;
   }
 
-  public passedLevel(): void {
+  public passLevel(): void {
     this.states[this.currentIndex].status = LevelStatus.PASSED;
+  }
+
+  public skipLevel(): void {
+    this.states[this.currentIndex].status = LevelStatus.SKIPPED;
   }
 
   public nextLevel(): boolean {

@@ -60,4 +60,11 @@
     justify-content: space-around;
     flex: 0 0 auto;
 }
-  
+
+.helpButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1 ;
+    width: fit-content;
+}

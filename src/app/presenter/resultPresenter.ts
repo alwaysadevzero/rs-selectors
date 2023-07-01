@@ -25,7 +25,7 @@ export default class ResultPresenter extends Presenter {
     console.log(answer);
     if (answer) {
       this.emit.drawRightAnswer();
-      this.emit.updatePassedLevel();
+      this.emit.updatepassLevel();
     } else {
       this.emit.drawWrongAnswer();
     }
