@@ -10,11 +10,11 @@ export default class HtmlPresenter extends Presenter {
   }
 
   private addListener = (): void => {
-    this.eventEmmiter.on(this.eventEmmiter.events.UPADTE_HTML, this.updateHtml);
+    this.on.updateHtml(this.updateHtml);
   };
 
   private updateHtml = (): void => {
     const htmlcode: string = this.htmlModel.getHtml();
-    this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlcode);
+    this.emit.drawHtml(htmlcode);
   };
 }

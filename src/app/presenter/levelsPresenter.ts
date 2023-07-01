@@ -1,6 +1,7 @@
 import LevelsModel from "../model/levelsModel";
 import Presenter from "./presenter";
 import { Level } from "../view/main/menu/levels/inteface";
+import { LevelStatus } from "../model/enums";
 
 export default class LevelPresenter extends Presenter {
   private levelsModel = new LevelsModel();
@@ -12,14 +13,8 @@ export default class LevelPresenter extends Presenter {
   }
 
   private addListener = () => {
-    this.eventEmmiter.on(
-      this.eventEmmiter.events.SWITCH_LEVEL,
-      this.switchLevel
-    );
-    this.eventEmmiter.on(
-      this.eventEmmiter.events.PASSED_LEVEL,
-      this.passedLevel
-    );
+    this.on.switchLevel(this.switchLevel);
+    this.on.passedLevel(this.passedLevel);
   };
 
   private updateAll = (): void => {
@@ -31,42 +26,44 @@ export default class LevelPresenter extends Presenter {
   private updateLevels = () => {
     const levels = this.levelsModel.getLevels();
     const currentLevelIndex = this.levelsModel.currentIndex;
-    this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_LEVELS, {
-      currentLevelIndex,
-      levels,
-    });
+    this.emit.drawLevels(currentLevelIndex, levels);
   };
 
-  private emitSwitchLevelEvent = () => {
-    this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_SWITCH_LEVEL, {
-      previousLevelIndex: this.levelsModel.previousIndex,
-      newLevelIndex: this.levelsModel.currentIndex,
-    });
-  };
-
-  private switchLevel = (level: Level) => {
+  private switchLevel = (level: Level): void => {
     const newIndex = level.position - 1;
     if (this.levelsModel.switchLevel(newIndex)) {
-      this.emitSwitchLevelEvent();
+      this.emit.drawSwitchLevel(
+        this.levelsModel.previousIndex,
+        this.levelsModel.currentIndex
+      );
       this.updateAll();
     }
   };
 
   private passedLevel = (): void => {
     this.levelsModel.passedLevel();
+    const status = this.levelsModel.getLevelStatus();
+    const index = this.levelsModel.currentIndex;
+    this.emit.drawLevelStatus({ status, index });
     setTimeout(this.nextLevel, 1000);
   };
 
   private nextLevel = (): void => {
     if (this.levelsModel.nextLevel()) {
-      this.emitSwitchLevelEvent();
+      this.emit.drawSwitchLevel(
+        this.levelsModel.previousIndex,
+        this.levelsModel.currentIndex
+      );
       this.updateAll();
     }
   };
 
   private previousLevel = (): void => {
     if (this.levelsModel.previousLevel()) {
-      this.emitSwitchLevelEvent();
+      this.emit.drawSwitchLevel(
+        this.levelsModel.previousIndex,
+        this.levelsModel.currentIndex
+      );
       this.updateAll();
     }
   };

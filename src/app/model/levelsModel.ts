@@ -15,6 +15,11 @@ export default class LevelsModel extends Model {
     });
   }
 
+  public getLevelStatus(index?: number): LevelStatus {
+    const ind = index ? index : this.currentIndex;
+    return this.states[ind].status;
+  }
+
   public switchLevel(index: number): boolean {
     if (index < this.states.length && index >= 0) {
       this.previousIndex = this.currentIndex;

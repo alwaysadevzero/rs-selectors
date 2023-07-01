@@ -1,5 +1,6 @@
 import Presenter from "./presenter";
 import ResultModel from "../model/resultModel";
+import { LevelStatus } from "../model/enums";
 
 export default class ResultPresenter extends Presenter {
   private resultModel = new ResultModel();
@@ -10,30 +11,24 @@ export default class ResultPresenter extends Presenter {
   }
 
   private addListener = (): void => {
-    this.eventEmmiter.on(
-      this.eventEmmiter.events.UPDATE_RESULT,
-      this.updateResult
-    );
-    this.eventEmmiter.on(
-      this.eventEmmiter.events.CHECK_ANSWER,
-      this.checkAnswer
-    );
+    this.on.updateResult(this.updateResult);
+    this.on.checkAnswer(this.checkAnswer);
   };
 
   private updateResult = (): void => {
-    const htmlcode: string = this.resultModel.getHtml();
-    this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RESULT, htmlcode);
+    const htmlCode: string = this.resultModel.getHtml();
+    this.emit.drawResult(htmlCode);
   };
 
   private checkAnswer = (input: string): void => {
-    console.log(input);
+    console.log(1234);
     const answer: boolean = this.resultModel.checkAnswer(input);
     console.log(answer);
     if (answer) {
-      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RIGHT_ANSWER);
-      this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL);
+      this.emit.drawRightAnswer();
+      this.emit.updatePassedLevel();
     } else {
-      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_WRONG_ANSWER);
+      this.emit.drawWrongAnswer();
     }
   };
 }
