@@ -36,11 +36,18 @@ export default class InputView extends View<"article"> {
         this.checkAnswer();
       }
     });
+    eventEmmiter.on(eventEmmiter.events.CLEAR_INPUT, this.clearInput);
+  };
+
+  private clearInput = (): void => {
+    (this.input.node as HTMLInputElement).value = "";
   };
 
   private checkAnswer = (): void => {
     const value = (this.input.node as HTMLInputElement).value;
-    eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, value);
+    if (value) {
+      eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, value);
+    }
   };
 
   private configureView(): void {
