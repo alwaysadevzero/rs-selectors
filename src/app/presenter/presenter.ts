@@ -10,13 +10,6 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlCode),
     drawResult: (htmlCode: string): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RESULT, htmlCode),
-    clearInput: (): void =>
-      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT),
-    drawLevelStatus: (params: { status: LevelStatus; index: number }): void =>
-      this.eventEmmiter.emit(
-        this.eventEmmiter.events.DRAW_LEVEL_STATUS,
-        params
-      ),
     drawRightAnswer: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RIGHT_ANSWER),
     drawWrongAnswer: (): void =>
@@ -26,13 +19,25 @@ export default class Presenter {
         previousLevelIndex: prevIndex,
         newLevelIndex: newIndex,
       }),
+    drawLevelStatus: (params: { status: LevelStatus; index: number }): void =>
+      this.eventEmmiter.emit(
+        this.eventEmmiter.events.DRAW_LEVEL_STATUS,
+        params
+      ),
     drawLevels: (currentLevelIndex: number, levels: Level[]): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_LEVELS, {
         currentLevelIndex,
         levels,
       }),
+
     updatePassedLevel: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL),
+    updateHtml: (): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML),
+    updateResult: (): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT),
+    clearInput: (): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT),
   };
   protected on = {
     updateHtml: (func: () => void): void =>

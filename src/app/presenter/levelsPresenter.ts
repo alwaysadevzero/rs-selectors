@@ -18,9 +18,9 @@ export default class LevelPresenter extends Presenter {
   };
 
   private updateAll = (): void => {
-    this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
-    this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
-    this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+    this.emit.updateHtml();
+    this.emit.updateResult();
+    this.emit.clearInput();
   };
 
   private updateLevels = () => {
