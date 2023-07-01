@@ -6,6 +6,8 @@ import parserHtml from "../../../util/parserHtml";
 import hljs from "highlight.js";
 import "./highlights.css";
 
+const LINES_NUMBER = 20;
+
 export default class HtmlView extends View {
   private code!: View;
   constructor() {
@@ -28,11 +30,17 @@ export default class HtmlView extends View {
     }).value;
 
     const lines = highLightercode.split("\n");
-    const wrappedCode = lines.map((line, index) => {
+
+    let wrappedCode = lines.map((line, index) => {
       return `<span class="line" data-line-number="${
         index + 1
       }">${line}</span>`;
     });
+
+    for (let line = lines.length; line < LINES_NUMBER; line++) {
+      wrappedCode.push(`<span class="line" data-line-number="${line}"></span>`);
+    }
+
     const highLightedCode = wrappedCode.join("\n");
     this.code.node.innerHTML = parserHtml.parse(highLightedCode);
   };
