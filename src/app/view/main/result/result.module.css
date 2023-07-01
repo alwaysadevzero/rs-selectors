@@ -1,0 +1,177 @@
+.result{
+    margin: 20px auto;
+    height: 250px;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+
+.table {
+    transform-style: preserve-3d;
+    min-height: 142px;
+    padding: 15px 15px 22px;
+    box-shadow: 0 40px 10px #0003;
+    background: linear-gradient(#555454, #bebbbb);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transform: rotateX(20deg);
+    width: 100%;
+}
+
+.table .table-edge {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 12px;
+    background: #cecece;
+    transform: rotateX(-40deg);
+    transform-origin: top;
+}
+
+.table-edge:before, .table-edge:after {
+    content: "";
+    width: 24px;
+    height: 10px;
+    background: #858483;
+    position: absolute;
+    top: 100%;
+}
+
+.table-edge:before {
+    left: 20px;
+}
+
+.table-edge:after {
+    right: 20px;
+}
+
+.table * {
+    transform-origin: bottom center;
+}
+
+.table .selected {
+    animation-name: selected;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+
+.table plate, .table  bento {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    box-shadow: 0 8px #0000001a;
+    display: inline-block;
+}
+
+.table  plate *, .table  bento * {
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    transform: translate(-50%);
+}
+
+.table  plate {
+    border-radius: 50%;
+    border-bottom: solid 5px #ddd;
+    background-color: #fff;
+}
+
+.table  plate:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 18%;
+    top: 18%;
+    height: 65%;
+    width: 65%;
+    border-radius: 60%;
+    border-top: solid 6px #ccc;
+    opacity: .4;
+    background: #fff;
+}
+
+.table  plate#fancy:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 3%;
+    top: 6%;
+    height: 68%;
+    width: 74%;
+    border-radius: 60%;
+    border: solid 10px #009ff2;
+    opacity: .4;
+}
+
+.table  bento {
+    background: brown;
+    position: relative;
+    border: solid 3px #711c12;
+    border-width: 20px 2px;
+}
+
+.table bento:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border: solid 10px rgba(0, 0, 0, .1);
+    border-width: 10px 0 0 0px;
+}
+
+.table  apple, .table  orange {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px 4px 15px 4px;
+}
+
+.table  apple {
+    background: #e41919;
+    border-color: #ab1212;
+}
+
+.table  apple:before, .table  orange:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .3);
+    height: 30%;
+    width: 30%;
+    top: 0;
+    left: 35%;
+    border-radius: 100px;
+}
+
+.table  apple.small, .table  orange.small {
+    height: 30px;
+    width: 30px;
+    border-width: 2px 4px 8px 4px;
+}
+
+.table  pickle.small {
+    height: 40px;
+    width: 18px;
+    border-width: 1px 2px 6px 2px;
+}
+
+.table  orange {
+    background: orange;
+    border-color: #bd6e07;
+}
+
+.table pickle {
+    width: 25px;
+    height: 60px;
+    border-radius: 30px;
+    background: #179837;
+    border: solid 2px #025a18;
+    border-width: 2px 2px 9px 2px;
+}

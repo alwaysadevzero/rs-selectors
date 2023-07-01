@@ -9,6 +9,14 @@ export default class LevelPresenter extends Presenter {
     this.updateLevels();
     this.addListener();
   }
+
+  private addListener = () => {
+    this.eventEmmiter.on(
+      this.eventEmmiter.events.SWITCH_LEVEL,
+      this.switchLevel
+    );
+  };
+
   private updateLevels = () => {
     const levels = this.levelsModel.getLevels();
     const currentLevelIndex = this.levelsModel.currentIndex;
@@ -16,13 +24,6 @@ export default class LevelPresenter extends Presenter {
       currentLevelIndex,
       levels,
     });
-  };
-
-  private addListener = () => {
-    this.eventEmmiter.on(
-      this.eventEmmiter.events.SWITCH_LEVEL,
-      this.switchLevel
-    );
   };
 
   private switchLevel = (level: Level) => {
