@@ -1,6 +1,5 @@
 import Presenter from "./presenter";
 import ResultModel from "../model/resultModel";
-import { LevelStatus } from "../model/enums";
 
 export default class ResultPresenter extends Presenter {
   private resultModel = new ResultModel();
