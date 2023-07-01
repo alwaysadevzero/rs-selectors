@@ -2,15 +2,24 @@ import styles from "./level.module.css";
 import View from "../../../../view";
 import { Level } from "../inteface";
 import eventEmmiter from "../../../../../util/eventEmmiter";
+import { LevelStatus } from "../../../../../model/enums";
 
 export default class LevelView extends View<"article"> {
   private level!: Level;
+  private status!: LevelStatus;
+
   constructor(params: Level) {
     super({
       className: styles.level,
     });
     this.configureView(params);
     this.addEventListener();
+  }
+
+  public setStatus(status: LevelStatus) {
+    this.removeClass(styles[this.status]);
+    this.addClass(styles[status]);
+    this.status = status;
   }
 
   public highLightLevel(): void {
@@ -29,9 +38,8 @@ export default class LevelView extends View<"article"> {
 
   private configureView(params: Level): void {
     this.level = params;
-    const className = params.status;
-    console.log(className);
-    this.addClass(styles[className]);
+    this.status = params.status;
+    this.addClass(styles[this.status]);
 
     const position = new View({
       content: params.position?.toString(),
