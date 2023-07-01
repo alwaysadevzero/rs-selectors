@@ -1,10 +1,11 @@
 import styles from "./main.module.css";
 import "./main.css";
+import parserHtml from "../../util/parserHtml";
 import View from "../view";
 import EditorView from "./editor/editorView";
 import HtmlView from "./html/htmlView";
 import menuView from "./menu/menuView";
-import parserHtml from "../../util/parserHtml";
+import resultView from "./result/resultView";
 
 const footerRawHTML = `
   <div class="container">
@@ -38,21 +39,20 @@ export default class MainView extends View {
       className: styles.title,
       content: "RS Selectors",
     });
-    const editor = new EditorView();
-    const html = new HtmlView();
+
+    const result = new resultView();
 
     const wrapper = new View({ className: styles.wrapper });
+    const editor = new EditorView();
+    const html = new HtmlView();
     wrapper.append(editor, html);
 
     const footer = new View({ tag: "footer", className: styles.footer });
-
     footer.node.innerHTML = parserHtml.parse(footerRawHTML);
-    leftSide.append(title, wrapper, footer);
+    leftSide.append(title, result, wrapper, footer);
 
     const rightSide = new View({ className: styles.rightSide });
-
     const menu = new menuView();
-
     rightSide.append(menu);
 
     this.append(leftSide, rightSide);

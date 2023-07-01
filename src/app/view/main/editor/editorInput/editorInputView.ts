@@ -17,15 +17,33 @@ const TEXT_AREA = [
 ];
 
 export default class InputView extends View<"article"> {
+  private enterButton!: View;
+  private input!: View;
   constructor() {
     super({
       tag: "article",
       className: styles.field,
     });
     this.configureView();
+    this.addEventListener();
   }
 
-  configureView() {
+  private addEventListener = (): void => {
+    this.enterButton.addListener("click", () => this.checkAnswer());
+    this.input.addListener("keypress", (event) => {
+      const e = event as KeyboardEvent;
+      if (e.key === "Enter") {
+        this.checkAnswer();
+      }
+    });
+  };
+
+  private checkAnswer = (): void => {
+    const value = (this.input.node as HTMLInputElement).value;
+    eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, value);
+  };
+
+  private configureView(): void {
     const input = new View<"input">({
       tag: "input",
       className: styles.input,
@@ -39,9 +57,8 @@ export default class InputView extends View<"article"> {
       tag: "button",
       className: styles.button,
     });
-    enterButton.addListener("click", () => {
-      eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, "bb");
-    });
+    this.input = input;
+    this.enterButton = enterButton;
 
     this.append(lines, enterButton);
   }
