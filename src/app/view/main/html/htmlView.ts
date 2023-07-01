@@ -26,9 +26,10 @@ export default class HtmlView extends View {
   }
 
   private drawHtmlCode = (html: string): void => {
-    while (this.code.node.firstChild) {
-      this.code.node.removeChild(this.code.node.firstChild);
-    }
+    this.code.node.innerHTML = "";
+    // while (this.code.node.firstChild) {
+    //   this.code.node.removeChild(this.code.node.firstChild);
+    // }
 
     const highLightercode: string = hljs.highlight(html, {
       language: "html",

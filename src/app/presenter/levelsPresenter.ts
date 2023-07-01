@@ -16,6 +16,8 @@ export default class LevelPresenter extends Presenter {
     this.on.switchLevel(this.switchLevel);
     this.on.passLevel(this.passLevel);
     this.on.skipLevel(this.skipLevel);
+    this.on.resetLevels(this.resetLevels);
+    this.on.updateLevels(this.updateLevels);
   };
 
   private updateAll = (): void => {
@@ -39,6 +41,11 @@ export default class LevelPresenter extends Presenter {
       );
       this.updateAll();
     }
+  };
+
+  private resetLevels = (): void => {
+    this.levelsModel.resetLevels();
+    this.emit.updateAll();
   };
 
   private passLevel = (): void => {

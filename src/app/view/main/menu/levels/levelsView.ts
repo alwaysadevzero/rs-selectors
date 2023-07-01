@@ -7,7 +7,7 @@ import { LevelStatus } from "../../../../model/enums";
 
 export default class LevelsView extends View<"article"> {
   private levelsWrapper = new View({ className: styles.levels });
-  private levelsArr: LevelView[] = [];
+  private levelsArr!: LevelView[];
 
   constructor() {
     super({
@@ -75,10 +75,8 @@ export default class LevelsView extends View<"article"> {
     ) {
       throw new Error("invalid passed parameters to drawLevels");
     }
-
-    while (this.levelsWrapper.node.firstChild) {
-      this.levelsWrapper.node.removeChild(this.levelsWrapper.node.firstChild);
-    }
+    this.levelsWrapper.node.innerHTML = "";
+    this.levelsArr = [];
 
     levels.map((level, index) => {
       const lvl = new LevelView(level);

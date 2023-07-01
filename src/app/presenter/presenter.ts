@@ -29,21 +29,30 @@ export default class Presenter {
         currentLevelIndex,
         levels,
       }),
-
     updatepassLevel: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL),
     updateHtml: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML),
     updateResult: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT),
+    updateLevels: (): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_LEVELS),
     clearInput: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT),
+    updateAll: (): void => {
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_LEVELS);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+    },
   };
   protected on = {
     updateHtml: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPADTE_HTML, func),
     updateResult: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_RESULT, func),
+    updateLevels: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_LEVELS, func),
     checkAnswer: (func: (arg: string) => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.CHECK_ANSWER, func),
     switchLevel: (func: (arg: Level) => void): void =>
@@ -52,5 +61,7 @@ export default class Presenter {
       this.eventEmmiter.on(this.eventEmmiter.events.PASSED_LEVEL, func),
     skipLevel: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.SKIP_LEVEL, func),
+    resetLevels: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.RESET_LEVELS, func),
   };
 }
