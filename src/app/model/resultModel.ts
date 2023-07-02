@@ -1,5 +1,5 @@
 import Model from "./model";
-import parserHtml from "../util/parserHtml";
+import ParserHtml from "../util/parserHtml";
 
 export default class ResultModel extends Model {
   private markup!: HTMLElement;
@@ -25,7 +25,7 @@ export default class ResultModel extends Model {
     const htmlString: string = this.getHtml();
     const solution: string = this.getSolution();
 
-    const markup = parserHtml.getWrap(htmlString, true);
+    const markup = ParserHtml.getWrap(htmlString, true);
 
     const answer = markup.querySelectorAll(solution);
     const userInput = markup.querySelectorAll(input);
