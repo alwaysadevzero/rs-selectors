@@ -61,8 +61,12 @@ export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
     this.node.classList.remove(...classNames);
   }
 
-  public toggleClass(className: string, state: boolean): void {
-    this.node.classList.toggle(className, state);
+  public toggleClass(className: string, state?: boolean): void {
+    if (state) {
+      this.node.classList.toggle(className, state);
+    } else {
+      this.node.classList.toggle(className);
+    }
   }
 
   public get style(): CSSStyleDeclaration {

@@ -9,3 +9,11 @@
 
     flex-grow: 0.5;
 }
+
+.displayNone {
+    display: none;
+}
+
+.resetButton{
+    margin-top: auto;
+}

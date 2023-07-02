@@ -11,14 +11,22 @@ export default class ProgressView extends View {
 
   private backButton!: View;
 
+  private burger!: View;
+
   constructor() {
-    super({});
+    super({
+      className: styles.progress,
+    });
     this.configureView();
     this.addEventListener();
   }
 
   private addEventListener(): void {
     eventEmmiter.on(eventEmmiter.events.DRAW_PROGRESS, this.updateProgress);
+
+    this.burger.addListener("click", () =>
+      eventEmmiter.emit(eventEmmiter.events.SWITCH_MENU)
+    );
 
     this.nextButton.addListener("click", () => {
       eventEmmiter.emit(eventEmmiter.events.NEXT_LEVEL);
@@ -56,9 +64,17 @@ export default class ProgressView extends View {
       content: "&gt;",
     });
 
+    const burger = new View({ tag: "a", className: styles.burger });
+    burger.append(
+      new View({ className: styles.burgerLine }),
+      new View({ className: styles.burgerLine }),
+      new View({ className: styles.burgerLine })
+    );
+    this.burger = burger;
+
     const levelTittle = new View({ tag: "h2", className: styles.levelTittle });
     const wrapper = new View({ className: styles.wrapper });
-    wrapper.append(levelTittle, backButton, nextButton);
+    wrapper.append(levelTittle, backButton, nextButton, burger);
 
     this.append(wrapper, progress);
     this.levelTittle = levelTittle;

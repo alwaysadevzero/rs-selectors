@@ -8,7 +8,13 @@
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-    gap: 20px
+    justify-content: space-between;
+    margin: 0;
+}
+
+.progress {
+    width: 300px;
+    margin: 0;
 }
 
 .wrapper a {
@@ -16,4 +22,19 @@
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+}
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.burgerLine {
+    width: 20px;
+    height: 2px;
+    background: var(--primary);
 }

@@ -8,7 +8,8 @@ import eventEmmiter from "../../../util/eventEmmiter";
 export default class MenuView extends View<"article"> {
   private resetButton!: View;
 
-  private progress!: View;
+  private desciption!: View;
+  private levels!: View;
 
   constructor() {
     super({
@@ -23,12 +24,19 @@ export default class MenuView extends View<"article"> {
     this.resetButton.addListener("click", () => {
       eventEmmiter.emit(eventEmmiter.events.RESET_LEVELS);
     });
+    eventEmmiter.on(eventEmmiter.events.SWITCH_MENU, this.switchMenu);
   }
+
+  private switchMenu = (): void => {
+    this.levels.toggleClass(styles.displayNone);
+    this.desciption.toggleClass(styles.displayNone);
+  };
 
   private configureView(): void {
     const header = new View({ className: styles.header });
     const progress = new ProgressView();
     const levels = new LevelsView();
+    levels.addClass(styles.displayNone);
     const desciption = new DescriptionView();
 
     header.append(progress);
@@ -37,6 +45,9 @@ export default class MenuView extends View<"article"> {
       tag: "button",
       content: "Reset Progress",
     });
+
+    this.desciption = desciption;
+    this.levels = levels;
 
     this.append(header, desciption, levels, this.resetButton);
   }
