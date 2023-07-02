@@ -29,6 +29,14 @@ export default class Presenter {
         currentLevelIndex,
         levels,
       }),
+    drawDescription: (params: {
+      title: string;
+      syntax: string;
+      hint: string;
+      example: string;
+    }) =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_DESCRIPTION, params),
+
     updatepassLevel: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL),
     updateHtml: (): void =>
@@ -66,6 +74,8 @@ export default class Presenter {
     skipLevel: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.SKIP_LEVEL, func),
     resetLevels: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.RESET_LEVELS, func),
+    updateDescription: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.RESET_LEVELS, func),
   };
 }
