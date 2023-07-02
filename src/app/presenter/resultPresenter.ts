@@ -21,9 +21,7 @@ export default class ResultPresenter extends Presenter {
   };
 
   private checkAnswer = (input: string): void => {
-    console.log(1234);
     const answer: boolean = this.resultModel.checkAnswer(input);
-    console.log(answer);
     if (answer) {
       this.emit.drawRightAnswer();
       this.emit.updatepassLevel();
