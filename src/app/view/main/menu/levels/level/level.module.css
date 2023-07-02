@@ -12,13 +12,13 @@
 }
 .level::before{
     padding-left: 5px;
-    margin-top: 5px;
+    margin-top: 8px;
     margin-right: 10px;
     content: "";
-    border: solid 3px ;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-    width: 8px;
+    border-radius: 100%;
+    /* border-width: 0 3px 3px 0;
+    transform: rotate(45deg); */
+    width: 13px;
     height: 13px;
 }
 
@@ -26,13 +26,14 @@
     background-color: var(--current-color);
 }
 .skipped::before{
-    border-color: var(--skipped-color);
+    background-color: var(--skipped-color);
 }
 .passed::before{
-    border-color: #2bff00;
+    background-color: var(--passed--color);
 }
-.pending{
-    
+.pending::before{
+    display: block;
+    background-color: var(--color);
 }
 
 .name {

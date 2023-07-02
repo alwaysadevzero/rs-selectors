@@ -1,7 +1,7 @@
 :root{
-    --skipped-color: #631b19;
+    --skipped-color: #ac110cea;
+    --passed--color: #2bff00;
     --current-color: #3a3a3a;
-    --passed--color: #003d03;
 }
 
 .page {
