@@ -2,6 +2,7 @@ import { ComponentProps } from "./types";
 
 export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
   public node: HTMLElement;
+
   constructor({
     parent = null,
     tag = "div" as T,
@@ -16,55 +17,55 @@ export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
     }
   }
 
-  remove(): void {
+  public remove(): void {
     this.node.remove();
   }
 
-  appendTo(parent: HTMLElement | View): void {
+  public appendTo(parent: HTMLElement | View): void {
     parent.append(this.node);
   }
 
-  append(...components: (HTMLElement | View)[]): void {
+  public append(...components: (HTMLElement | View)[]): void {
     const nodes = components.map((component) =>
       component instanceof HTMLElement ? component : component.node
     );
     this.node.append(...nodes);
   }
 
-  addListener(
+  public addListener(
     eventName: keyof GlobalEventHandlersEventMap,
     callback: (event?: Event) => void
   ): void {
     this.node.addEventListener(eventName, callback);
   }
 
-  setAttributes(attributes: Record<string, string>): void {
+  public setAttributes(attributes: Record<string, string>): void {
     Object.entries(attributes).forEach(([prop, value]) =>
       this.node.setAttribute(prop, value)
     );
   }
 
-  removeAttributes(...attributes: string[]): void {
+  public removeAttributes(...attributes: string[]): void {
     attributes.forEach((attribute) => this.node.removeAttribute(attribute));
   }
 
-  setContent(content: string): void {
+  public setContent(content: string): void {
     this.node.textContent = content;
   }
 
-  addClass(...classNames: string[]): void {
+  public addClass(...classNames: string[]): void {
     this.node.classList.add(...classNames);
   }
 
-  removeClass(...classNames: string[]): void {
+  public removeClass(...classNames: string[]): void {
     this.node.classList.remove(...classNames);
   }
 
-  toggleClass(className: string, state: boolean): void {
+  public toggleClass(className: string, state: boolean): void {
     this.node.classList.toggle(className, state);
   }
 
-  get style(): CSSStyleDeclaration {
+  public get style(): CSSStyleDeclaration {
     return this.node.style;
   }
 }

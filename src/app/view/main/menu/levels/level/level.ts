@@ -6,6 +6,7 @@ import { LevelStatus } from "../../../../../model/enums";
 
 export default class LevelView extends View<"article"> {
   private level!: Level;
+
   private status!: LevelStatus;
 
   constructor(params: Level) {

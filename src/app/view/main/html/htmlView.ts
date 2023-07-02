@@ -1,16 +1,18 @@
+import hljs from "highlight.js";
 import styles from "./html.module.css";
 import View from "../../view";
 import PanelView from "../shared/panel/panelView";
 import eventEmmiter from "../../../util/eventEmmiter";
 import parserHtml from "../../../util/parserHtml";
-import hljs from "highlight.js";
 import "./highlights.css";
 
 const LINES_NUMBER = 15;
 
 export default class HtmlView extends View {
   private code!: View;
+
   private helpButton!: View;
+
   constructor() {
     super({});
     this.configureView();
@@ -37,13 +39,13 @@ export default class HtmlView extends View {
 
     const lines = highLightercode.split("\n");
 
-    let wrappedCode = lines.map((line, index) => {
+    const wrappedCode = lines.map((line, index) => {
       return `<span class="line" data-line-number="${
         index + 1
       }">${line}</span>`;
     });
 
-    for (let line = lines.length; line < LINES_NUMBER; line++) {
+    for (let line = lines.length; line < LINES_NUMBER; line = +1) {
       wrappedCode.push(`<span class="line" data-line-number="${line}"></span>`);
     }
 
@@ -51,7 +53,7 @@ export default class HtmlView extends View {
     this.code.node.innerHTML = parserHtml.parse(highLightedCode);
   };
 
-  configureView() {
+  private configureView() {
     this.addClass(styles.html);
 
     const editorHeader = new PanelView("HTML Viewer", "table.html");

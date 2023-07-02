@@ -38,7 +38,8 @@ const tasks: Task[] = [
     hint: 'Select all elements with class="red".',
     example: '.red selects all elements with class="red".',
     solution: ".red",
-    html: `<apple class="red"></apple>
+    html: `<apple class="red">
+</apple>
 <apple></apple>`,
   },
   {

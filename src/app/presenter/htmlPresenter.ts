@@ -3,6 +3,7 @@ import HtmlModel from "../model/htmlModel";
 
 export default class HtmlPresenter extends Presenter {
   private htmlModel = new HtmlModel();
+
   constructor() {
     super();
     this.updateHtml();

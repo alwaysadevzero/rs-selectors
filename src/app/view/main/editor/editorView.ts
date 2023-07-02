@@ -9,7 +9,7 @@ export default class EditorView extends View {
     this.configureView();
   }
 
-  configureView() {
+  private configureView() {
     const editorHeader = new PanelView("CSS Editor", "Styles.css");
     const editorInput = new InputView();
 

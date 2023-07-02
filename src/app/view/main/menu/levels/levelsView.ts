@@ -7,6 +7,7 @@ import { LevelStatus } from "../../../../model/enums";
 
 export default class LevelsView extends View<"article"> {
   private levelsWrapper = new View({ className: styles.levels });
+
   private levelsArr!: LevelView[];
 
   constructor() {
@@ -17,7 +18,7 @@ export default class LevelsView extends View<"article"> {
     this.addEventListeners();
   }
 
-  addEventListeners = (): void => {
+  private addEventListeners = (): void => {
     eventEmmiter.on(eventEmmiter.events.DRAW_LEVELS, this.drawLevels);
     eventEmmiter.on(eventEmmiter.events.DRAW_SWITCH_LEVEL, this.switchLevel);
     eventEmmiter.on(
@@ -31,7 +32,6 @@ export default class LevelsView extends View<"article"> {
     index: number;
   }) => {
     const { status, index } = params;
-    console.log(status);
     this.levelsArr[index].setStatus(status);
   };
 
@@ -44,7 +44,7 @@ export default class LevelsView extends View<"article"> {
     this.append(heading, this.levelsWrapper);
   };
 
-  private isLevelParams = (obj: unknown): obj is Level => {
+  public static isLevelParams = (obj: unknown): obj is Level => {
     return (
       typeof obj === "object" &&
       obj !== null &&
@@ -71,19 +71,18 @@ export default class LevelsView extends View<"article"> {
 
     if (
       !Array.isArray(levels) ||
-      !levels.every((level) => this.isLevelParams(level))
+      !levels.every((level) => LevelsView.isLevelParams(level))
     ) {
       throw new Error("invalid passed parameters to drawLevels");
     }
     this.levelsWrapper.node.innerHTML = "";
     this.levelsArr = [];
 
-    levels.map((level, index) => {
-      const lvl = new LevelView(level);
-      if (index === currentLevelIndex) lvl.highLightLevel();
+    for (let i = 0; i < levels.length; i = +1) {
+      const lvl = new LevelView(levels[i]);
+      if (i === currentLevelIndex) lvl.highLightLevel();
       this.levelsArr.push(lvl);
-    });
-
+    }
     this.levelsWrapper.append(...this.levelsArr);
   };
 }

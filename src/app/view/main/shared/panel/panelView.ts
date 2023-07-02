@@ -16,7 +16,7 @@ export default class PanelView extends View {
     this.configureView(panelName, fileName);
   }
 
-  configureView(panelName: string, fileName: string) {
+  private configureView(panelName: string, fileName: string) {
     if (panelName) {
       const panelNameView = new View({ content: panelName });
       panelNameView.addClass(CssClasses.PANEL_NAME);

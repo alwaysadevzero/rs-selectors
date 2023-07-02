@@ -36,6 +36,7 @@
   },
   "scripts": {
     "build": "webpack --progress",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "lint": "eslint ./src"
   }
 }

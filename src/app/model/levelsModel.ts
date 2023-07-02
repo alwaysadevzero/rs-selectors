@@ -16,14 +16,14 @@ export default class LevelsModel extends Model {
   }
 
   public resetLevels(): void {
-    this.states.forEach((state) => {
+    for (const state of this.states) {
       state.status = LevelStatus.PENDING;
-    });
+    }
     this.currentIndex = 0;
   }
 
   public getLevelStatus(index?: number): LevelStatus {
-    const ind = index ? index : this.currentIndex;
+    const ind = index || this.currentIndex;
     return this.states[ind].status;
   }
 

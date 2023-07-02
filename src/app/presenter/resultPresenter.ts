@@ -3,6 +3,7 @@ import ResultModel from "../model/resultModel";
 
 export default class ResultPresenter extends Presenter {
   private resultModel = new ResultModel();
+
   constructor() {
     super();
     this.updateResult();

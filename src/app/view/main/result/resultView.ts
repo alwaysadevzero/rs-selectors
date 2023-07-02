@@ -4,8 +4,9 @@ import View from "../../view";
 import parserHtml from "../../../util/parserHtml";
 import eventEmmiter from "../../../util/eventEmmiter";
 
-export default class resultView extends View<"article"> {
+export default class ResultView extends View<"article"> {
   private drawSection!: View;
+
   constructor() {
     super({
       tag: "article",
@@ -20,11 +21,10 @@ export default class resultView extends View<"article"> {
   }
 
   private drawResult = (html: string): void => {
-    console.log(this.drawResult);
     this.drawSection.node.innerHTML = parserHtml.parse(html, true);
   };
 
-  configureView(): void {
+  private configureView(): void {
     const table = new View({ className: styles.table });
     const tableEdge = new View({ className: styles["table-edge"] });
     this.drawSection = new View({ className: styles.section });

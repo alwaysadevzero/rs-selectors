@@ -4,8 +4,9 @@ import parserHtml from "../../util/parserHtml";
 import View from "../view";
 import EditorView from "./editor/editorView";
 import HtmlView from "./html/htmlView";
-import menuView from "./menu/menuView";
-import resultView from "./result/resultView";
+import MenuView from "./menu/menuView";
+import ResultView from "./result/resultView";
+// import modalView from "./modal/modal";
 
 const footerRawHTML = `
   <div class="container">
@@ -31,6 +32,7 @@ export default class MainView extends View {
 
     this.configureView();
   }
+
   private configureView(): void {
     const leftSide = new View({ className: styles.leftSide });
 
@@ -40,7 +42,7 @@ export default class MainView extends View {
       content: "RS Selectors",
     });
 
-    const result = new resultView();
+    const result = new ResultView();
 
     const wrapper = new View({ className: styles.wrapper });
     const editor = new EditorView();
@@ -52,7 +54,7 @@ export default class MainView extends View {
     leftSide.append(title, result, wrapper, footer);
 
     const rightSide = new View({ className: styles.rightSide });
-    const menu = new menuView();
+    const menu = new MenuView();
     rightSide.append(menu);
 
     this.append(leftSide, rightSide);

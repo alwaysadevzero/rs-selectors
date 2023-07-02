@@ -46,6 +46,7 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
     },
   };
+
   protected on = {
     updateHtml: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPADTE_HTML, func),

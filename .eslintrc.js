@@ -19,6 +19,7 @@ module.exports = {
     },
     "plugins": ["prettier", "@typescript-eslint"],
     "rules": {
+        "no-restricted-syntax": ["off", "FunctionExpression", "WithStatement", "BinaryExpression[operator='of']"],
         'import/extensions': "off",
         "prettier/prettier": "error",
         "@typescript-eslint/no-explicit-any": "error",
@@ -37,5 +38,17 @@ module.exports = {
             }
         ],
         "max-lines-per-function": ['error', 40],
+        "@typescript-eslint/member-ordering": [
+            "error",
+            {
+              "default": [
+                "field",
+                "signature",
+                "constructor",
+                "method"
+              ]
+            }
+          ],
+        "import/prefer-default-export": [ "off"]
     },
 };

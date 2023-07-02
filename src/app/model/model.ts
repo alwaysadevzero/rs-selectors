@@ -6,22 +6,28 @@ import { State } from "./interface";
 
 export default class Model {
   private tasks: Task[] = tasks;
-  static states: State[];
-  static currentIndex: number;
 
-  get states(): State[] {
+  protected static states: State[];
+
+  protected static currentIndex: number;
+
+  // eslint-disable-next-line class-methods-use-this
+  public get states(): State[] {
     return Model.states;
   }
 
-  set states(states: State[]) {
+  // eslint-disable-next-line class-methods-use-this
+  public set states(states: State[]) {
     Model.states = states;
   }
 
-  get currentIndex(): number {
+  // eslint-disable-next-line class-methods-use-this
+  public get currentIndex(): number {
     return Model.currentIndex;
   }
 
-  set currentIndex(index: number) {
+  // eslint-disable-next-line class-methods-use-this
+  public set currentIndex(index: number) {
     Model.currentIndex = index;
   }
 
@@ -41,15 +47,16 @@ export default class Model {
     if (states) {
       return JSON.parse(states);
     }
-    return this.firstload(this.tasks);
+    return this.firstload();
   };
 
-  private firstload = (tasks: Task[]): State[] => {
+  private firstload = (): State[] => {
     const state = this.tasks.map((task, index) => {
-      return Object.assign(
-        { status: LevelStatus.PENDING, position: index + 1 },
-        task
-      );
+      return {
+        status: LevelStatus.PENDING,
+        position: index + 1,
+        ...task,
+      };
     });
     this.currentIndex = 0;
     return state;

@@ -1,7 +1,9 @@
 import Model from "./model";
 import parserHtml from "../util/parserHtml";
+
 export default class ResultModel extends Model {
   private markup!: HTMLElement;
+
   private markupindex!: number;
 
   public getHtml(): string {
@@ -15,7 +17,7 @@ export default class ResultModel extends Model {
 
   public getSolution(): string {
     const index: number = this.currentIndex;
-    const solution: string = this.states[index].solution;
+    const { solution } = this.states[index];
     return solution;
   }
 
@@ -32,6 +34,7 @@ export default class ResultModel extends Model {
     return result;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private compareResults(answer: NodeList, userInput: NodeList): boolean {
     if (answer.length !== userInput.length) return false;
     if (JSON.stringify(answer) !== JSON.stringify(userInput)) return false;

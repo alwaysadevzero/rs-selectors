@@ -18,7 +18,9 @@ const TEXT_AREA = [
 
 export default class InputView extends View<"article"> {
   private enterButton!: View;
+
   private input!: View;
+
   constructor() {
     super({
       tag: "article",
@@ -44,7 +46,7 @@ export default class InputView extends View<"article"> {
   };
 
   private checkAnswer = (): void => {
-    const value = (this.input.node as HTMLInputElement).value;
+    const { value } = this.input.node as HTMLInputElement;
     if (value) {
       eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, value);
     }
@@ -56,7 +58,7 @@ export default class InputView extends View<"article"> {
       className: styles.input,
     });
 
-    const lines = this.configureLines();
+    const lines = InputView.configureLines();
     lines.node.firstChild?.appendChild(input.node);
 
     const enterButton = new View<"button">({
@@ -70,14 +72,14 @@ export default class InputView extends View<"article"> {
     this.append(lines, enterButton);
   }
 
-  configureLines(lineCount?: number): View {
+  private static configureLines(lineCount?: number): View {
     const count = lineCount ?? LINES_NUMBER;
     const lines = new View<"div">({
       tag: "div",
       className: styles.lines,
     });
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i = +1) {
       const line = new View<"span">({
         tag: "span",
         className: styles.line,

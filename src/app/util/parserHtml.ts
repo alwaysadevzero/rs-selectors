@@ -2,7 +2,7 @@ import sanitizeHtml, { IOptions } from "sanitize-html";
 
 const ALLOWED_TAGS = ["plate", "bento", "apple", "orange", "pickle"];
 class ParserHtml {
-  public parse(htmlString: string, tags?: boolean): string {
+  public static parse(htmlString: string, tags?: boolean): string {
     let settings: Partial<IOptions> = {
       allowedClasses: { "*": ["*"] },
     };
@@ -15,12 +15,12 @@ class ParserHtml {
     return markup;
   }
 
-  public getWrap(htmlString: string, tags?: boolean): HTMLElement {
+  public static getWrap(htmlString: string, tags?: boolean): HTMLElement {
     const elem = document.createElement("div");
 
     let wrap;
-    if (tags) wrap = this.parse(htmlString, tags);
-    else wrap = this.parse(htmlString);
+    if (tags) wrap = ParserHtml.parse(htmlString, tags);
+    else wrap = ParserHtml.parse(htmlString);
 
     elem.innerHTML = wrap;
 
@@ -28,4 +28,4 @@ class ParserHtml {
   }
 }
 
-export default new ParserHtml();
+export default ParserHtml;
