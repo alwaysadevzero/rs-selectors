@@ -6,7 +6,7 @@ import EditorView from "./editor/editorView";
 import HtmlView from "./html/htmlView";
 import MenuView from "./menu/menuView";
 import ResultView from "./result/resultView";
-// import modalView from "./modal/modal";
+import ModalView from "./modal/modal";
 
 const footerRawHTML = `
   <div class="container">
@@ -57,6 +57,8 @@ export default class MainView extends View {
     const menu = new MenuView();
     rightSide.append(menu);
 
-    this.append(leftSide, rightSide);
+    const modal = new ModalView();
+
+    this.append(leftSide, rightSide, modal);
   }
 }

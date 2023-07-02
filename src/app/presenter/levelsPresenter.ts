@@ -52,6 +52,10 @@ export default class LevelPresenter extends Presenter {
     this.levelsModel.passLevel();
     const status = this.levelsModel.getLevelStatus();
     const index = this.levelsModel.currentIndex;
+    const isLastLevelPassed = this.levelsModel.isLastLevelPassed();
+    if (isLastLevelPassed) {
+      this.emit.gameWin();
+    }
     this.emit.drawLevelStatus({ status, index });
     setTimeout(this.nextLevel, 1000);
   };

@@ -1,4 +1,5 @@
 export enum Events {
+  GAME_WIN,
   CHECK_ANSWER,
   SWITCH_LEVEL,
   PASSED_LEVEL,

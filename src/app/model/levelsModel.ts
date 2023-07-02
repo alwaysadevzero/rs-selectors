@@ -36,6 +36,13 @@ export default class LevelsModel extends Model {
     return false;
   }
 
+  public isLastLevelPassed(): boolean {
+    if (this.states[this.states.length - 1].status === LevelStatus.PASSED) {
+      return true;
+    }
+    return false;
+  }
+
   public passLevel(): void {
     this.states[this.currentIndex].status = LevelStatus.PASSED;
   }

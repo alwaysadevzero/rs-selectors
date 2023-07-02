@@ -45,6 +45,9 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
     },
+    gameWin: (): void => {
+      this.eventEmmiter.emit(this.eventEmmiter.events.GAME_WIN);
+    },
   };
 
   protected on = {
