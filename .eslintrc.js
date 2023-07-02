@@ -19,6 +19,7 @@ module.exports = {
     },
     "plugins": ["prettier", "@typescript-eslint"],
     "rules": {
+        "class-methods-use-this": ["off"],
         "no-restricted-syntax": ["off", "FunctionExpression", "WithStatement", "BinaryExpression[operator='of']"],
         'import/extensions': "off",
         "prettier/prettier": "error",
