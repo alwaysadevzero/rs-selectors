@@ -9,6 +9,7 @@ export default class LevelPresenter extends Presenter {
   constructor() {
     super();
     this.updateLevels();
+    this.updateProgress();
     this.addListener();
   }
 
@@ -18,12 +19,14 @@ export default class LevelPresenter extends Presenter {
     this.on.skipLevel(this.skipLevel);
     this.on.resetLevels(this.resetLevels);
     this.on.updateLevels(this.updateLevels);
+    this.on.updateProgress(this.updateProgress);
   };
 
   private updateAll = (): void => {
     this.emit.updateHtml();
     this.emit.updateResult();
     this.emit.clearInput();
+    this.emit.updateProgress();
   };
 
   private updateLevels = () => {
@@ -43,6 +46,11 @@ export default class LevelPresenter extends Presenter {
     }
   };
 
+  private updateProgress = (): void => {
+    const progress = this.levelsModel.getProgress();
+    this.emit.drawProgress(progress);
+  };
+
   private resetLevels = (): void => {
     this.levelsModel.resetLevels();
     this.emit.updateAll();
@@ -50,8 +58,8 @@ export default class LevelPresenter extends Presenter {
 
   private passLevel = (): void => {
     this.levelsModel.passLevel();
-    const status = this.levelsModel.getLevelStatus();
-    const index = this.levelsModel.currentIndex;
+    const status: LevelStatus = this.levelsModel.getLevelStatus();
+    const index: number = this.levelsModel.currentIndex;
     const isLastLevelPassed = this.levelsModel.isLastLevelPassed();
     if (isLastLevelPassed) {
       this.emit.gameWin();

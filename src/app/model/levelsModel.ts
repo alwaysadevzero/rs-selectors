@@ -15,6 +15,10 @@ export default class LevelsModel extends Model {
     });
   }
 
+  public getProgress(): { index: number; length: number } {
+    return { index: this.currentIndex, length: this.states.length };
+  }
+
   public resetLevels(): void {
     for (const state of this.states) {
       state.status = LevelStatus.PENDING;
