@@ -29,6 +29,7 @@ export default class LevelPresenter extends Presenter {
     this.emit.updateResult();
     this.emit.clearInput();
     this.emit.updateProgress();
+    this.emit.updateDescription();
   };
 
   private updateLevels = () => {

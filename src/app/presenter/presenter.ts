@@ -1,6 +1,7 @@
 import EventEmitter from "../util/eventEmmiter";
 import { Level } from "../view/main/menu/levels/inteface";
 import { LevelStatus } from "../model/enums";
+import { Description } from "../view/main/menu/description/interface";
 
 export default class Presenter {
   protected eventEmmiter = EventEmitter;
@@ -19,6 +20,9 @@ export default class Presenter {
         previousLevelIndex: prevIndex,
         newLevelIndex: newIndex,
       }),
+    drawProgress: (params: { index: number; length: number }): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_PROGRESS, params),
+
     drawLevelStatus: (params: { status: LevelStatus; index: number }): void =>
       this.eventEmmiter.emit(
         this.eventEmmiter.events.DRAW_LEVEL_STATUS,
@@ -29,16 +33,11 @@ export default class Presenter {
         currentLevelIndex,
         levels,
       }),
-    drawDescription: (params: {
-      title: string;
-      syntax: string;
-      hint: string;
-      example: string;
-    }) =>
+    drawDescription: (params: Description): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_DESCRIPTION, params),
-    drawProgress: (params: { index: number; length: number }): void =>
-      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_PROGRESS, params),
 
+    updateDescription: (): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION),
     updateProgress: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS),
     updatepassLevel: (): void =>
@@ -49,6 +48,7 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT),
     updateLevels: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_LEVELS),
+
     clearInput: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT),
     updateAll: (): void => {
@@ -70,6 +70,8 @@ export default class Presenter {
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_RESULT, func),
     updateLevels: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_LEVELS, func),
+    updateDescription: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_DESCRIPTION, func),
     checkAnswer: (func: (arg: string) => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.CHECK_ANSWER, func),
     switchLevel: (func: (arg: Level) => void): void =>
