@@ -82,5 +82,9 @@ export default class Presenter {
       this.eventEmmiter.on(this.eventEmmiter.events.RESET_LEVELS, func),
     updateProgress: (func: () => void): void =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_PROGRESS, func),
+    nextLevel: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.NEXT_LEVEL, func),
+    backLevel: (func: () => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.BACK_LEVEL, func),
   };
 }

@@ -20,6 +20,8 @@ export default class LevelPresenter extends Presenter {
     this.on.resetLevels(this.resetLevels);
     this.on.updateLevels(this.updateLevels);
     this.on.updateProgress(this.updateProgress);
+    this.on.nextLevel(this.nextLevel);
+    this.on.backLevel(this.previousLevel);
   };
 
   private updateAll = (): void => {
