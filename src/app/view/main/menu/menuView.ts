@@ -1,6 +1,7 @@
 import styles from "./menu.module.css";
 import View from "../../view";
 import LevelsView from "./levels/levelsView";
+import DescriptionView from "./description/description";
 import eventEmmiter from "../../../util/eventEmmiter";
 
 export default class MenuView extends View<"article"> {
@@ -23,6 +24,7 @@ export default class MenuView extends View<"article"> {
 
   private configureView(): void {
     const levels = new LevelsView();
+    const description = new DescriptionView();
 
     this.resetButton = new View({
       className: styles.resetButton,
@@ -30,6 +32,6 @@ export default class MenuView extends View<"article"> {
       content: "Reset Progress",
     });
 
-    this.append(levels, this.resetButton);
+    this.append(description, levels, this.resetButton);
   }
 }
