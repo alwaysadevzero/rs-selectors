@@ -2,3 +2,13 @@
     font-weight: 800;
     user-select: none;
 }
+.levels{
+    /* position: absolute; */
+    /* width: 0; */
+    
+}
+.levelsWrapper {
+    position: relative;
+    overflow: hidden;
+    /* box-sizing: content-box; */
+}

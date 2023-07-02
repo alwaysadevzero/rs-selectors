@@ -5,14 +5,14 @@ import LevelView from "./level/level";
 import { Level } from "./inteface";
 import { LevelStatus } from "../../../../model/enums";
 
-export default class LevelsView extends View<"article"> {
+export default class LevelsView extends View {
   private levelsWrapper = new View({ className: styles.levels });
 
   private levelsArr!: LevelView[];
 
   constructor() {
     super({
-      className: styles.levels,
+      className: styles.levelsWrapper,
     });
     this.configureView();
     this.addEventListeners();
