@@ -11,9 +11,9 @@ class App {
     const main = document.querySelector(".main");
     if (main) main.append(view.node);
 
-    // const levelsPresenter = new LevelPresenter();
-    // const htmlPresenter = new HtmlPresenter();
-    // const resultPresenter = new ResultPresenter();
+    const levelsPresenter = new LevelPresenter();
+    const htmlPresenter = new HtmlPresenter();
+    const resultPresenter = new ResultPresenter();
   }
 }
 

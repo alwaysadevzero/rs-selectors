@@ -78,7 +78,7 @@ export default class LevelsView extends View<"article"> {
     this.levelsWrapper.node.innerHTML = "";
     this.levelsArr = [];
 
-    for (let i = 0; i < levels.length; i = +1) {
+    for (let i = 0; i < levels.length; i += 1) {
       const lvl = new LevelView(levels[i]);
       if (i === currentLevelIndex) lvl.highLightLevel();
       this.levelsArr.push(lvl);

@@ -79,7 +79,7 @@ export default class InputView extends View<"article"> {
       className: styles.lines,
     });
 
-    for (let i = 0; i < count; i = +1) {
+    for (let i = 0; i < count; i += 1) {
       const line = new View<"span">({
         tag: "span",
         className: styles.line,

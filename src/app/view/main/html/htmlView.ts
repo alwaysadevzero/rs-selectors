@@ -29,9 +29,6 @@ export default class HtmlView extends View {
 
   private drawHtmlCode = (html: string): void => {
     this.code.node.innerHTML = "";
-    // while (this.code.node.firstChild) {
-    //   this.code.node.removeChild(this.code.node.firstChild);
-    // }
 
     const highLightercode: string = hljs.highlight(html, {
       language: "html",
@@ -45,7 +42,7 @@ export default class HtmlView extends View {
       }">${line}</span>`;
     });
 
-    for (let line = lines.length; line < LINES_NUMBER; line = +1) {
+    for (let line = lines.length; line < LINES_NUMBER; line += 1) {
       wrappedCode.push(`<span class="line" data-line-number="${line}"></span>`);
     }
 
