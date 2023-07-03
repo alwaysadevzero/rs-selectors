@@ -1,10 +1,18 @@
 .html{
     flex-grow: 0.5;
     max-width: 550px;
+    min-width: 300px;
     position: relative;
     box-sizing: content-box;
     padding: 0;
+    margin: 0;
+    font-size: 0px;
 }
+
+.panel {
+    font-size: 20px;
+}
+
 
 .htmlCode{
     margin-top: 0;
@@ -12,11 +20,7 @@
 }
 .code{ 
     padding: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    width: 100%;
     line-height: 28.5px;
     font-size: 20px;
     font-weight: 400;
@@ -41,6 +45,9 @@
     font-weight: 400px;
     margin-left: 20px;
 }
+
+
+
 
 .pre > span:before {
     background-color: #DDD;
@@ -67,4 +74,19 @@
     right: 0;
     z-index: 1 ;
     width: fit-content;
+}
+
+
+@media (max-width: 1400px) {
+    .panel{
+        display: none;
+    }
+    .pre > span {
+        font-size: 15px;
+    }
+    .helpButton {
+        position: relative;
+        width: 100%;
+    }
+    
 }

@@ -6,10 +6,12 @@
     justify-content: center;
     padding: 0;
     max-width: 600px;
+    width: fit-content;
 }
 
 
 .table {
+    min-width: 300px;
     transform-style: preserve-3d;
     min-height: 142px;
     padding: 15px 15px 22px;
@@ -20,7 +22,6 @@
     gap: 20px;
     align-items: center;
     transform: rotateX(20deg);
-    width: 100%;
     perspective: 300px;
 
 }

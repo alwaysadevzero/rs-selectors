@@ -18,6 +18,12 @@
     flex-direction: column;
 }
 
+@media (max-width: 1400px) {
+    .lines > .line:nth-child(n+3){
+        display: none;
+    }
+}
+
 .line {
     display: flex;
     color: rgba(0, 0, 0, 0.5);

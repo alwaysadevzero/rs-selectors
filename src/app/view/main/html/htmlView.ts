@@ -54,6 +54,7 @@ export default class HtmlView extends View {
     this.addClass(styles.html);
 
     const editorHeader = new PanelView("HTML Viewer", "table.html");
+    editorHeader.addClass(styles.panel);
 
     const htmlCode = new View({ tag: "article", className: styles.html });
     htmlCode.addClass(styles.htmlCode);

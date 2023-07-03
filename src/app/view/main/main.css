@@ -1,3 +1,7 @@
+footer {
+    margin-top: 20px;
+}
+
 .footer__links {
     display: flex;
     flex-wrap: wrap;
