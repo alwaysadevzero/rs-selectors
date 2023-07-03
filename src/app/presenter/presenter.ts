@@ -34,6 +34,11 @@ export default class Presenter {
         currentLevelIndex,
         levels,
       }),
+    drawSkipLevel: (solution: string) =>
+      this.eventEmmiter.emit(
+        this.eventEmmiter.events.DRAW_SKIP_LEVEL,
+        solution
+      ),
     drawDescription: (params: Description): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_DESCRIPTION, params),
 
