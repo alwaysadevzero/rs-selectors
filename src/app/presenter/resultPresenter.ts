@@ -6,8 +6,11 @@ export default class ResultPresenter extends Presenter {
 
   constructor() {
     super();
-    // this.updateResult();
+    this.updateResult();
     this.addListener();
+    window.addEventListener("unload", () => {
+      this.resultModel.saveGame();
+    });
   }
 
   private addListener = (): void => {

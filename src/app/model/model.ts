@@ -11,6 +11,10 @@ export default class Model {
 
   protected static currentIndex: number;
 
+  constructor() {
+    this.loadGame();
+  }
+
   public get states(): State[] {
     return Model.states;
   }
@@ -27,32 +31,46 @@ export default class Model {
     Model.currentIndex = index;
   }
 
-  public loadStates = (): State[] => {
-    const savedStates = localStorage.getItem("states");
-    const savedIndex = localStorage.getItem("currentIndex");
+  public loadGame(): void {
+    this.states = this.loadStates();
+    this.currentIndex = this.loadIndex();
+  }
 
-    if (savedStates && savedStates !== "undefined") {
-      this.states = JSON.parse(savedStates);
-    } else {
-      this.states = this.firstload();
-    }
-
-    if (savedIndex && savedIndex !== "undefined") {
-      this.currentIndex = JSON.parse(savedIndex);
-    } else {
-      this.currentIndex = 0;
-    }
-
-    return this.states;
-  };
-
-  public saveStates = (): void => {
+  public saveGame = (): void => {
     const states = JSON.stringify(this.states);
     localStorage.setItem("states", states);
 
     const currentIndex = JSON.stringify(this.currentIndex);
     localStorage.setItem("currentIndex", currentIndex);
-    console.log(currentIndex);
+  };
+
+  private loadIndex(index?: number): number {
+    if (index) return index;
+    if (this.currentIndex) return this.currentIndex;
+    const savedIndex = localStorage.getItem("currentIndex");
+    let ind;
+    if (savedIndex && savedIndex !== "undefined") {
+      ind = JSON.parse(savedIndex);
+    } else {
+      ind = 0;
+    }
+    return ind;
+  }
+
+  private loadStates = (): State[] => {
+    if (!this.states) {
+      const savedStates = localStorage.getItem("states");
+      if (
+        savedStates &&
+        savedStates !== "undefined" &&
+        savedStates !== "null"
+      ) {
+        this.states = JSON.parse(savedStates);
+      } else {
+        this.states = this.firstload();
+      }
+    }
+    return this.states;
   };
 
   private firstload = (): State[] => {
@@ -63,7 +81,6 @@ export default class Model {
         ...task,
       };
     });
-
     return state;
   };
 }
