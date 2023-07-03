@@ -1,3 +1,7 @@
 a {
     text-decoration: none;
 }
+
+mark {
+    padding: 0;
+}
