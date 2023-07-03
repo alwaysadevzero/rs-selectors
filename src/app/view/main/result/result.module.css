@@ -20,6 +20,9 @@
     align-items: center;
     transform: rotateX(20deg);
     width: 100%;
+
+    perspective: 300px;
+
 }
 
 .table .table-edge {
