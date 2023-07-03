@@ -2,6 +2,7 @@ import EventEmitter from "../util/eventEmmiter";
 import { Level } from "../view/main/menu/levels/inteface";
 import { LevelStatus } from "../model/enums";
 import { Description } from "../view/main/menu/description/interface";
+import Model from "../model/model";
 
 export default class Presenter {
   protected eventEmmiter = EventEmitter;
@@ -9,8 +10,8 @@ export default class Presenter {
   protected emit = {
     drawHtml: (htmlCode: string): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlCode),
-    drawResult: (htmlCode: string): void =>
-      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RESULT, htmlCode),
+    drawResult: (params: { htmlCode: string; solution: string }): void =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RESULT, params),
     drawRightAnswer: (): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_RIGHT_ANSWER),
     drawWrongAnswer: (): void =>
@@ -57,6 +58,7 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS);
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION);
     },
     gameWin: (): void => {
       this.eventEmmiter.emit(this.eventEmmiter.events.GAME_WIN);

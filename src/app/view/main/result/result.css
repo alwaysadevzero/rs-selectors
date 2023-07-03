@@ -1,16 +1,11 @@
 plate, bento {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
     position: relative;
     box-shadow: 0 8px #0000001a;
-    display: inline-block;
-}
-
-plate *, bento * {
-    position: absolute;
-    left: 50%;
-    bottom: 20%;
-    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 plate {
@@ -64,12 +59,14 @@ bento:before {
 }
 
 apple, orange {
-    display: inline-block;
+    /* position: absolute; */
+    /* display: inline-block; */
     height: 60px;
     width: 60px;
     border-radius: 50%;
     border-style: solid;
     border-width: 2px 4px 15px 4px;
+    z-index: 2;
 }
 
 apple {
@@ -79,9 +76,9 @@ apple {
 
 apple:before, orange:before {
     content: "";
-    display: block;
-    /* position: absolute; */
     position: relative;
+    display: block;
+    z-index: 5;
     left: 20px;
     background: rgba(255, 255, 255, .3);
     height: 30%;
@@ -116,10 +113,10 @@ pickle {
     border: solid 2px #025a18;
     border-width: 2px 2px 9px 2px;
 }
-
+/* 
 .table * {
     transform-origin: bottom center;
-}
+} */
 
 .table .selected {
     animation-name: selected;
@@ -186,6 +183,24 @@ pickle {
     }
 }
 
+@keyframes dd {
+    0% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
 .target {
-    animation: swing 2s infinite ease-in-out;
+    animation: swing 2s infinite ease;
+}
+
+.target .apple{
+    left: 25% !important;
+    transform: translate(50%);
+    animation: dd  2s 1  ease;
 }

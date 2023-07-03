@@ -6,7 +6,7 @@ export default class ResultPresenter extends Presenter {
 
   constructor() {
     super();
-    this.updateResult();
+    // this.updateResult();
     this.addListener();
   }
 
@@ -16,8 +16,7 @@ export default class ResultPresenter extends Presenter {
   };
 
   private updateResult = (): void => {
-    const htmlCode: string = this.resultModel.getHtml();
-    this.emit.drawResult(htmlCode);
+    this.emit.drawResult(this.resultModel.getHtml());
   };
 
   private checkAnswer = (input: string): void => {

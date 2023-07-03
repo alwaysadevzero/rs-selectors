@@ -20,8 +20,15 @@ export default class ResultView extends View<"article"> {
     eventEmmiter.on(eventEmmiter.events.DRAW_RESULT, this.drawResult);
   }
 
-  private drawResult = (html: string): void => {
-    this.drawSection.node.innerHTML = parserHtml.parse(html, true);
+  private drawResult = (params: {
+    htmlCode: string;
+    solution: string;
+  }): void => {
+    this.drawSection.node.innerHTML = params.htmlCode;
+    const target = this.drawSection.node.querySelectorAll(params.solution);
+    console.log(target);
+    console.log(params.solution);
+    Array.from(target).map((target) => target.classList.add("target"));
   };
 
   private configureView(): void {

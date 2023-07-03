@@ -2,17 +2,12 @@ import Model from "./model";
 import ParserHtml from "../util/parserHtml";
 
 export default class ResultModel extends Model {
-  private markup!: HTMLElement;
-
-  private markupindex!: number;
-
-  public getHtml(): string {
+  public getHtml(): { htmlCode: string; solution: string } {
     const index: number = this.currentIndex;
-    const htmlString: string = this.states[index].html;
+    const { html } = this.states[index];
+    const { solution } = this.states[index];
 
-    this.markupindex = index;
-
-    return htmlString;
+    return { htmlCode: html, solution: solution };
   }
 
   public getSolution(): string {
@@ -22,10 +17,10 @@ export default class ResultModel extends Model {
   }
 
   public checkAnswer(input: string): boolean {
-    const htmlString: string = this.getHtml();
+    const { htmlCode } = this.getHtml();
     const solution: string = this.getSolution();
 
-    const markup = ParserHtml.getWrap(htmlString, true);
+    const markup = ParserHtml.getWrap(htmlCode, true);
 
     const answer = markup.querySelectorAll(solution);
     const userInput = markup.querySelectorAll(input);
