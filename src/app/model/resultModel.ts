@@ -22,11 +22,16 @@ export default class ResultModel extends Model {
 
     const markup = ParserHtml.getWrap(htmlCode, true);
 
-    const answer = markup.querySelectorAll(solution);
-    const userInput = markup.querySelectorAll(input);
+    try {
+      const answer = markup.querySelectorAll(solution);
+      const userInput = markup.querySelectorAll(input);
 
-    const result: boolean = this.compareResults(answer, userInput);
-    return result;
+      const result: boolean = this.compareResults(answer, userInput);
+      return result;
+    } catch (e) {
+      return false;
+      console.log(e);
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
