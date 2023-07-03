@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     padding: 0;
+    max-width: 600px;
 }
 
 
@@ -20,7 +21,6 @@
     align-items: center;
     transform: rotateX(20deg);
     width: 100%;
-
     perspective: 300px;
 
 }

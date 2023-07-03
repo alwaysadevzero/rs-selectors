@@ -59,28 +59,36 @@ export default class Model {
 
   private loadStates = (): State[] => {
     if (!this.states) {
+      const firstLoadState = this.firstload();
       const savedStates = localStorage.getItem("states");
       if (
         savedStates &&
         savedStates !== "undefined" &&
         savedStates !== "null"
       ) {
-        this.states = JSON.parse(savedStates);
+        this.states =
+          savedStates === JSON.stringify(firstLoadState)
+            ? JSON.parse(savedStates)
+            : firstLoadState;
+
+        if (this.states === firstLoadState) {
+          this.currentIndex = 0;
+        }
       } else {
-        this.states = this.firstload();
+        this.states = firstLoadState;
       }
     }
     return this.states;
   };
 
   private firstload = (): State[] => {
-    const state = this.tasks.map((task, index) => {
+    const states = this.tasks.map((task, index) => {
       return {
         status: LevelStatus.PENDING,
         position: index + 1,
         ...task,
       };
     });
-    return state;
+    return states;
   };
 }
