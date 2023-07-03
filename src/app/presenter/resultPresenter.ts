@@ -16,6 +16,11 @@ export default class ResultPresenter extends Presenter {
   private addListener = (): void => {
     this.on.updateResult(this.updateResult);
     this.on.checkAnswer(this.checkAnswer);
+    this.on.skipLevel(this.skipLevel);
+  };
+
+  private skipLevel = () => {
+    this.emit.drawSkipLevel(this.resultModel.getSolution());
   };
 
   private updateResult = (): void => {

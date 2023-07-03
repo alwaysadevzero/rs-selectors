@@ -38,7 +38,34 @@ export default class InputView extends View<"article"> {
         this.checkAnswer();
       }
     });
+    eventEmmiter.on(eventEmmiter.events.DRAW_SKIP_LEVEL, this.drawSkipLevel);
     eventEmmiter.on(eventEmmiter.events.CLEAR_INPUT, this.clearInput);
+    eventEmmiter.on(
+      eventEmmiter.events.DRAW_WRONG_ANSWER,
+      this.drawWrongAnswer
+    );
+  };
+
+  private drawSkipLevel = (solution: string) => {
+    (this.input.node as HTMLInputElement).value = "";
+    let index = 0;
+    const writeText = () => {
+      if (index < solution.length) {
+        (this.input.node as HTMLInputElement).value += solution.charAt(index);
+        index += 1;
+
+        setTimeout(writeText, 80);
+      }
+    };
+
+    writeText();
+  };
+
+  private drawWrongAnswer = () => {
+    this.addClass(styles.wrongAnswer);
+    setTimeout(() => {
+      this.removeClass(styles.wrongAnswer);
+    }, 500);
   };
 
   private clearInput = (): void => {
