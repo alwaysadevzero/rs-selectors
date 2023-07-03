@@ -8,7 +8,7 @@ export default class ModalView extends View {
   private exitButton!: View;
 
   constructor() {
-    super({});
+    super({ className: styles.modal });
     this.configureView();
     this.addEventListener();
   }
@@ -28,10 +28,13 @@ export default class ModalView extends View {
 
   private disableModal = (): void => {
     this.modal.removeAttributes("open");
+    this.removeClass(styles.open);
+    console.log(styles.open);
   };
 
   private enableModal = (): void => {
     this.modal.setAttributes({ open: "" });
+    this.addClass(styles.open);
   };
 
   private configureView = (): void => {
