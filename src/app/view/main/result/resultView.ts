@@ -7,6 +7,8 @@ import eventEmmiter from "../../../util/eventEmmiter";
 export default class ResultView extends View<"article"> {
   private drawSection!: View;
 
+  private target!: Element[];
+
   constructor() {
     super({
       tag: "article",
@@ -18,17 +20,26 @@ export default class ResultView extends View<"article"> {
 
   private addEventListener(): void {
     eventEmmiter.on(eventEmmiter.events.DRAW_RESULT, this.drawResult);
+    eventEmmiter.on(
+      eventEmmiter.events.DRAW_RIGHT_ANSWER,
+      this.drawRightAnswer
+    );
   }
+
+  private drawRightAnswer = () => {
+    console.log(1234);
+    this.target.map((target) => target.classList.add("selected"));
+  };
 
   private drawResult = (params: {
     htmlCode: string;
     solution: string;
   }): void => {
     this.drawSection.node.innerHTML = params.htmlCode;
-    const target = this.drawSection.node.querySelectorAll(params.solution);
-    console.log(target);
-    console.log(params.solution);
-    Array.from(target).map((target) => target.classList.add("target"));
+    this.target = Array.from(
+      this.drawSection.node.querySelectorAll(params.solution)
+    );
+    this.target.map((target) => target.classList.add("target"));
   };
 
   private configureView(): void {
