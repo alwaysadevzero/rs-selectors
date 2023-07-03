@@ -136,29 +136,6 @@ const tasks: Task[] = [
 </bento>`,
   },
   {
-    name: "Universal Selectors",
-    "selector-name": "Universal selector",
-    title: "Select all elements",
-    syntax: "*",
-    hint: "",
-    example: "* selects every element.",
-    solution: "*",
-    html: `<plate>
-</plate>
-<bento>
-    <bento>
-      <plate>
-        <orange></orange>
-        <apple></apple>
-      </plate>
-    </bento>
-</bento>
-<bento>
-  <pickle></pickle>
-</bento>
-<apple></apple>`,
-  },
-  {
     name: "Attribute Selectors With Value",
     "selector-name": "Attribute selector with value",
     title: 'Select all plates with a "for" attribute equal to "picnic"',
@@ -270,6 +247,29 @@ const tasks: Task[] = [
   <apple></apple>
   <apple></apple>
 </plate>`,
+  },
+  {
+    name: "Universal Selectors",
+    "selector-name": "Universal selector",
+    title: "Select all elements",
+    syntax: "*",
+    hint: "",
+    example: "* selects every element.",
+    solution: "*",
+    html: `<plate>
+</plate>
+<bento>
+    <bento>
+      <plate>
+        <orange></orange>
+        <apple></apple>
+      </plate>
+    </bento>
+</bento>
+<bento>
+  <pickle></pickle>
+</bento>
+<apple></apple>`,
   },
 ];
 
