@@ -11,43 +11,48 @@ export default class Model {
 
   protected static currentIndex: number;
 
-  // eslint-disable-next-line class-methods-use-this
   public get states(): State[] {
     return Model.states;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public set states(states: State[]) {
     Model.states = states;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public get currentIndex(): number {
     return Model.currentIndex;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public set currentIndex(index: number) {
     Model.currentIndex = index;
   }
 
-  constructor() {
-    this.loadStates();
-  }
+  public loadStates = (): State[] => {
+    const savedStates = localStorage.getItem("states");
+    const savedIndex = localStorage.getItem("currentIndex");
 
-  public loadStates(): State[] {
-    if (!this.states) {
-      this.states = this.loadSetup();
+    if (savedStates && savedStates !== "undefined") {
+      this.states = JSON.parse(savedStates);
+    } else {
+      this.states = this.firstload();
     }
+
+    if (savedIndex && savedIndex !== "undefined") {
+      this.currentIndex = JSON.parse(savedIndex);
+    } else {
+      this.currentIndex = 0;
+    }
+
     return this.states;
-  }
+  };
 
-  public loadSetup = () => {
-    const states = localStorage.getItem("states") || "";
-    if (states) {
-      return JSON.parse(states);
-    }
-    return this.firstload();
+  public saveStates = (): void => {
+    const states = JSON.stringify(this.states);
+    localStorage.setItem("states", states);
+
+    const currentIndex = JSON.stringify(this.currentIndex);
+    localStorage.setItem("currentIndex", currentIndex);
+    console.log(currentIndex);
   };
 
   private firstload = (): State[] => {
@@ -58,7 +63,7 @@ export default class Model {
         ...task,
       };
     });
-    this.currentIndex = 0;
+
     return state;
   };
 }
