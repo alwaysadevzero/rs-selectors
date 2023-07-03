@@ -7,7 +7,7 @@ export default class ResultModel extends Model {
     const { html } = this.states[index];
     const { solution } = this.states[index];
 
-    return { htmlCode: html, solution: solution };
+    return { htmlCode: html, solution };
   }
 
   public getSolution(): string {
