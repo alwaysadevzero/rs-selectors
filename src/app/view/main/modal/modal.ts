@@ -39,7 +39,7 @@ export default class ModalView extends View {
     modal.setAttributes({ id: "modal" });
 
     const article = new View({ tag: "article", className: styles.article });
-    const h2 = new View({ tag: "h2", content: "You Win!" });
+    const h2 = new View({ tag: "h2", content: "You Won!" });
     const exitButton = new View({ tag: "a" });
     exitButton.setAttributes({
       "aria-label": "Close",
