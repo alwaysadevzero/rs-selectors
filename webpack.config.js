@@ -1,17 +1,26 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const PrettierPlugin = require("prettier-webpack-plugin");
+const PrettierPlugin = require('prettier-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[id].bundle.js',
     assetModuleFilename: 'assets/[hash][ext]',
   },
-  devtool: "inline-source-map",
-  mode: 'development',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+  // devtool: 'inline-source-map',
+  mode: 'production',
   devServer: {
     compress: true,
     open: true,
@@ -48,12 +57,40 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[local]_[hash:base64:5]', // Customize the generated class names
+                localIdentName: '[local]_[hash:base64:5]',
               },
               importLoaders: 2,
             },
           },
           'sass-loader',
+        ],
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75,
+              },
+            },
+          },
         ],
       },
     ],
@@ -65,13 +102,12 @@ module.exports = {
     }),
     new ESLintPlugin(),
     new PrettierPlugin({
-      printWidth: 80,               // Указывает максимальную ширину строки
-      tabWidth: 2,                  // Указывает количество пробелов на табуляцию
-      useTabs: false,               // Индентация с использованием пробелов (false) или табуляции (true)
-      semi: true,                   // Использование точек с запятой в конце предложений
-      encoding: 'utf-8',            // Кодировка
-      extensions: [ ".js", ".ts" ], // Файлы с этими расширениями будут отформатированы
-      // ... вы можете указать другие настройки Prettier здесь ...
+      printWidth: 80,
+      tabWidth: 2,
+      useTabs: false,
+      semi: true,
+      encoding: 'utf-8',
+      extensions: ['.js', '.ts'],
     }),
   ],
   resolve: {
