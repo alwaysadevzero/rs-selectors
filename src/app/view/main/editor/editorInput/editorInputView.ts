@@ -19,6 +19,8 @@ const TEXT_AREA = [
 export default class InputView extends View<"article"> {
   private enterButton!: View;
 
+  private currentTimeout: NodeJS.Timeout | null = null;
+
   private input!: View;
 
   constructor() {
@@ -49,12 +51,20 @@ export default class InputView extends View<"article"> {
   private drawSkipLevel = (solution: string) => {
     (this.input.node as HTMLInputElement).value = "";
     let index = 0;
+
+    if (this.currentTimeout !== null) {
+      clearTimeout(this.currentTimeout);
+      this.currentTimeout = null;
+    }
+
     const writeText = () => {
       if (index < solution.length) {
         (this.input.node as HTMLInputElement).value += solution.charAt(index);
         index += 1;
 
-        setTimeout(writeText, 80);
+        this.currentTimeout = setTimeout(writeText, 80);
+      } else {
+        this.currentTimeout = null;
       }
     };
 
