@@ -41,14 +41,16 @@ export default class LevelsModel extends Model {
   }
 
   public isLastLevelPassed(): boolean {
-    if (this.states[this.states.length - 1].status === LevelStatus.PASSED) {
+    const lastlevel: LevelStatus = this.states[this.states.length - 1].status;
+    if (lastlevel === LevelStatus.PASSED || lastlevel === LevelStatus.SKIPPED) {
       return true;
     }
     return false;
   }
 
   public passLevel(): void {
-    this.states[this.currentIndex].status = LevelStatus.PASSED;
+    if (this.states[this.currentIndex].status !== LevelStatus.SKIPPED)
+      this.states[this.currentIndex].status = LevelStatus.PASSED;
   }
 
   public skipLevel(): void {
