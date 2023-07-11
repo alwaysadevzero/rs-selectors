@@ -59,8 +59,6 @@ bento:before {
 }
 
 apple, orange {
-    /* position: absolute; */
-    /* display: inline-block; */
     height: 60px;
     width: 60px;
     border-radius: 50%;
