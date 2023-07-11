@@ -13,6 +13,10 @@
     overflow: visible !important;
 }
 
+.rightSide {
+    width: 330px;
+}
+
 .title {
     margin: 20px 0 0 20px;
 }
