@@ -12,9 +12,7 @@ export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
     this.node = document.createElement(tag);
     this.node.className = className;
     this.node.innerHTML = content;
-    if (parent) {
-      parent.append(this.node);
-    }
+    parent?.append(this.node);
   }
 
   public remove(): void {
@@ -62,11 +60,7 @@ export default class View<T extends keyof HTMLElementTagNameMap = "div"> {
   }
 
   public toggleClass(className: string, state?: boolean): void {
-    if (state) {
-      this.node.classList.toggle(className, state);
-    } else {
-      this.node.classList.toggle(className);
-    }
+    this.node.classList.toggle(className, state);
   }
 
   public get style(): CSSStyleDeclaration {
