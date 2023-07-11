@@ -29,7 +29,6 @@ export default class ModalView extends View {
   private disableModal = (): void => {
     this.modal.removeAttributes("open");
     this.removeClass(styles.open);
-    console.log(styles.open);
   };
 
   private enableModal = (): void => {

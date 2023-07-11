@@ -27,7 +27,6 @@ export default class ResultView extends View<"article"> {
   }
 
   private drawRightAnswer = () => {
-    console.log(1234);
     this.target.map((target) => target.classList.add("selected"));
   };
 

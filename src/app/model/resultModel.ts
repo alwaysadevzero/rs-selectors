@@ -30,7 +30,6 @@ export default class ResultModel extends Model {
       return result;
     } catch (e) {
       return false;
-      console.log(e);
     }
   }
 
