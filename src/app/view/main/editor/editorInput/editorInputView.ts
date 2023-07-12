@@ -1,5 +1,6 @@
 import styles from "./editorInput.module.css";
 import View from "../../../view";
+import Semmiter from "../../../../util/shorterEmmiter";
 import eventEmmiter from "../../../../util/eventEmmiter";
 
 const LINES_NUMBER = 15;
@@ -40,8 +41,8 @@ export default class InputView extends View<"article"> {
         this.checkAnswer();
       }
     });
-    eventEmmiter.on(eventEmmiter.events.DRAW_SKIP_LEVEL, this.drawSkipLevel);
-    eventEmmiter.on(eventEmmiter.events.CLEAR_INPUT, this.clearInput);
+    Semmiter.on.drawSkipLevel(this.drawSkipLevel);
+    Semmiter.on.clearInput(this.clearInput);
     eventEmmiter.on(
       eventEmmiter.events.DRAW_WRONG_ANSWER,
       this.drawWrongAnswer
