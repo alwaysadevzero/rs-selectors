@@ -1,11 +1,10 @@
-import Presenter from "./presenter";
+import Semmiter from "../util/shorterEmmiter";
 import ResultModel from "../model/resultModel";
 
-export default class ResultPresenter extends Presenter {
+export default class ResultPresenter {
   private resultModel = new ResultModel();
 
   constructor() {
-    super();
     this.updateResult();
     this.addListener();
     window.addEventListener("unload", () => {
@@ -13,27 +12,27 @@ export default class ResultPresenter extends Presenter {
     });
   }
 
-  private addListener = (): void => {
-    this.on.updateResult(this.updateResult);
-    this.on.checkAnswer(this.checkAnswer);
-    this.on.skipLevel(this.skipLevel);
+  private addListener = () => {
+    Semmiter.on.updateResult(this.updateResult);
+    Semmiter.on.checkAnswer(this.checkAnswer);
+    Semmiter.on.skipLevel(this.skipLevel);
   };
 
   private skipLevel = () => {
-    this.emit.drawSkipLevel(this.resultModel.getSolution());
+    Semmiter.emit.drawSkipLevel(this.resultModel.getSolution());
   };
 
-  private updateResult = (): void => {
-    this.emit.drawResult(this.resultModel.getHtml());
+  private updateResult = () => {
+    Semmiter.emit.drawResult(this.resultModel.getHtml());
   };
 
-  private checkAnswer = (input: string): void => {
+  private checkAnswer = (input: string) => {
     const answer: boolean = this.resultModel.checkAnswer(input);
     if (answer) {
-      this.emit.drawRightAnswer();
-      this.emit.updatepassLevel();
+      Semmiter.emit.drawRightAnswer();
+      Semmiter.emit.updatepassLevel();
     } else {
-      this.emit.drawWrongAnswer();
+      Semmiter.emit.drawWrongAnswer();
     }
   };
 }

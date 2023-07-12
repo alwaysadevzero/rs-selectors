@@ -1,20 +1,19 @@
-import Presenter from "./presenter";
+import Semmiter from "../util/shorterEmmiter";
 import DescriptionModel from "../model/descriptionModel";
 
-export default class DescriptionPresenter extends Presenter {
+export default class DescriptionPresenter {
   private descriptionModel = new DescriptionModel();
 
   constructor() {
-    super();
     this.updateDescription();
     this.addListener();
   }
 
   private addListener = (): void => {
-    this.on.updateDescription(this.updateDescription);
+    Semmiter.on.updateDescription(this.updateDescription);
   };
 
   private updateDescription = (): void => {
-    this.emit.drawDescription(this.descriptionModel.getDescription());
+    Semmiter.emit.drawDescription(this.descriptionModel.getDescription());
   };
 }

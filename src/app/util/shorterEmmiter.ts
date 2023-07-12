@@ -1,13 +1,15 @@
-import EventEmitter from "../util/eventEmmiter";
+import EventEmitter from "./eventEmmiter";
 import { Level } from "../view/main/menu/levels/inteface";
 import { LevelStatus } from "../model/enums";
 import { Description } from "../view/main/menu/description/interface";
-import Model from "../model/model";
 
-export default class Presenter {
+class Semmiter {
+  updateAllWithoutLevel() {
+    throw new Error("Method not implemented.");
+  }
   protected eventEmmiter = EventEmitter;
 
-  protected emit = {
+  public emit = {
     drawHtml: (htmlCode: string): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlCode),
     drawResult: (params: { htmlCode: string; solution: string }): void =>
@@ -39,25 +41,23 @@ export default class Presenter {
         this.eventEmmiter.events.DRAW_SKIP_LEVEL,
         solution
       ),
-    drawDescription: (params: Description): void =>
+    drawDescription: (params: Description) =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_DESCRIPTION, params),
-
-    updateDescription: (): void =>
+    updateDescription: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION),
-    updateProgress: (): void =>
+    updateProgress: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS),
-    updatepassLevel: (): void =>
+    updatepassLevel: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.PASSED_LEVEL),
-    updateHtml: (): void =>
+    updateHtml: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML),
-    updateResult: (): void =>
+    updateResult: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT),
-    updateLevels: (): void =>
+    updateLevels: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_LEVELS),
-
-    clearInput: (): void =>
+    clearInput: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT),
-    updateAll: (): void => {
+    updateAll: () => {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_LEVELS);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
@@ -65,35 +65,48 @@ export default class Presenter {
       this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION);
     },
-    gameWin: (): void => {
+    updateAllWithoutLevel: () => {
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS);
+      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION);
+    },
+    gameWin: () => {
       this.eventEmmiter.emit(this.eventEmmiter.events.GAME_WIN);
     },
   };
 
-  protected on = {
-    updateHtml: (func: () => void): void =>
+  public on = {
+    clearInput: (func: () => void) =>
+      this.eventEmmiter.on(this.eventEmmiter.events.CLEAR_INPUT, func),
+    drawSkipLevel: (func: (str: string) => void) =>
+      this.eventEmmiter.on(this.eventEmmiter.events.DRAW_SKIP_LEVEL, func),
+    updateHtml: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPADTE_HTML, func),
-    updateResult: (func: () => void): void =>
+    updateResult: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_RESULT, func),
-    updateLevels: (func: () => void): void =>
+    updateLevels: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_LEVELS, func),
-    updateDescription: (func: () => void): void =>
+    updateDescription: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_DESCRIPTION, func),
-    checkAnswer: (func: (arg: string) => void): void =>
+    checkAnswer: (func: (arg: string) => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.CHECK_ANSWER, func),
-    switchLevel: (func: (arg: Level) => void): void =>
+    switchLevel: (func: (arg: Level) => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.SWITCH_LEVEL, func),
-    passLevel: (func: () => void): void =>
+    passLevel: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.PASSED_LEVEL, func),
-    skipLevel: (func: () => void): void =>
+    skipLevel: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.SKIP_LEVEL, func),
-    resetLevels: (func: () => void): void =>
+    resetLevels: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.RESET_LEVELS, func),
-    updateProgress: (func: () => void): void =>
+    updateProgress: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.UPDATE_PROGRESS, func),
-    nextLevel: (func: () => void): void =>
+    nextLevel: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.NEXT_LEVEL, func),
-    backLevel: (func: () => void): void =>
+    backLevel: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.BACK_LEVEL, func),
   };
 }
+
+export default new Semmiter();

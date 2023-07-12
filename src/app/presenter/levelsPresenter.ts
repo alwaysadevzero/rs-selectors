@@ -1,100 +1,90 @@
 import LevelsModel from "../model/levelsModel";
-import Presenter from "./presenter";
+import Semmiter from "../util/shorterEmmiter";
 import { Level } from "../view/main/menu/levels/inteface";
-import { LevelStatus } from "../model/enums";
 
-export default class LevelPresenter extends Presenter {
+export default class LevelPresenter {
   private levelsModel = new LevelsModel();
 
   constructor() {
-    super();
     this.updateLevels();
     this.updateProgress();
     this.addListener();
   }
 
   private addListener = () => {
-    this.on.switchLevel(this.switchLevel);
-    this.on.passLevel(this.passLevel);
-    this.on.skipLevel(this.skipLevel);
-    this.on.resetLevels(this.resetLevels);
-    this.on.updateLevels(this.updateLevels);
-    this.on.updateProgress(this.updateProgress);
-    this.on.nextLevel(this.nextLevel);
-    this.on.backLevel(this.previousLevel);
-  };
-
-  private updateAll = (): void => {
-    this.emit.updateHtml();
-    this.emit.updateResult();
-    this.emit.clearInput();
-    this.emit.updateProgress();
-    this.emit.updateDescription();
+    Semmiter.on.switchLevel(this.switchLevel);
+    Semmiter.on.passLevel(this.passLevel);
+    Semmiter.on.skipLevel(this.skipLevel);
+    Semmiter.on.resetLevels(this.resetLevels);
+    Semmiter.on.updateLevels(this.updateLevels);
+    Semmiter.on.updateProgress(this.updateProgress);
+    Semmiter.on.nextLevel(this.nextLevel);
+    Semmiter.on.backLevel(this.previousLevel);
   };
 
   private updateLevels = () => {
     const levels = this.levelsModel.getLevels();
     const currentLevelIndex = this.levelsModel.currentIndex;
-    this.emit.drawLevels(currentLevelIndex, levels);
+    Semmiter.emit.drawLevels(currentLevelIndex, levels);
   };
 
-  private switchLevel = (level: Level): void => {
+  private switchLevel = (level: Level) => {
     const newIndex = level.position - 1;
     if (this.levelsModel.switchLevel(newIndex)) {
-      this.emit.drawSwitchLevel(
+      Semmiter.emit.drawSwitchLevel(
         this.levelsModel.previousIndex,
         this.levelsModel.currentIndex
       );
-      this.updateAll();
+      Semmiter.updateAllWithoutLevel();
     }
   };
 
-  private updateProgress = (): void => {
+  private updateProgress = () => {
     const progress = this.levelsModel.getProgress();
-    this.emit.drawProgress(progress);
+    Semmiter.emit.drawProgress(progress);
   };
 
-  private resetLevels = (): void => {
+  private resetLevels = () => {
     this.levelsModel.resetLevels();
-    this.emit.updateAll();
+    Semmiter.emit.updateAll();
   };
 
-  private passLevel = (): void => {
+  private passLevel = () => {
     this.levelsModel.passLevel();
-    const status: LevelStatus = this.levelsModel.getLevelStatus();
-    const index: number = this.levelsModel.currentIndex;
+    const status = this.levelsModel.getLevelStatus();
+    const index = this.levelsModel.currentIndex;
     const isLastLevelPassed = this.levelsModel.isLastLevelPassed();
     if (isLastLevelPassed) {
-      this.emit.gameWin();
+      Semmiter.emit.gameWin();
     }
-    this.emit.drawLevelStatus({ status, index });
+    Semmiter.emit.drawLevelStatus({ status, index });
     setTimeout(this.nextLevel, 1000);
   };
 
-  private skipLevel = (): void => {
+  private skipLevel = () => {
     this.levelsModel.skipLevel();
     const status = this.levelsModel.getLevelStatus();
     const index = this.levelsModel.currentIndex;
-    this.emit.drawLevelStatus({ status, index });
+    Semmiter.emit.drawLevelStatus({ status, index });
   };
 
-  private nextLevel = (): void => {
+  private nextLevel = () => {
     if (this.levelsModel.nextLevel()) {
-      this.emit.drawSwitchLevel(
+      Semmiter.emit.drawSwitchLevel(
         this.levelsModel.previousIndex,
         this.levelsModel.currentIndex
       );
-      this.updateAll();
+      Semmiter.emit.updateAllWithoutLevel();
     }
   };
 
-  private previousLevel = (): void => {
+  private previousLevel = () => {
     if (this.levelsModel.previousLevel()) {
-      this.emit.drawSwitchLevel(
+      Semmiter.emit.drawSwitchLevel(
         this.levelsModel.previousIndex,
         this.levelsModel.currentIndex
       );
-      this.updateAll();
+      Semmiter.emit.updateAllWithoutLevel();
     }
   };
 }
