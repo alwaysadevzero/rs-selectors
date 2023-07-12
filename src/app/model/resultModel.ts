@@ -33,7 +33,6 @@ export default class ResultModel extends Model {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private compareResults(answer: NodeList, userInput: NodeList): boolean {
     if (answer.length !== userInput.length) return false;
     if (JSON.stringify(answer) !== JSON.stringify(userInput)) return false;
