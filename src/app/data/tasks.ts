@@ -3,7 +3,6 @@ import { Task } from "./interface";
 const tasks: Task[] = [
   {
     name: "Basic Selectors",
-    "selector-name": "Type selector",
     title: "Select all plates",
     syntax: "tag",
     hint: "Select every <plate> element on the page.",
@@ -17,7 +16,6 @@ const tasks: Task[] = [
   },
   {
     name: "Child Selectors",
-    "selector-name": "Child selector",
     title: "Select apple on the plate",
     syntax: "selector > selector",
     hint: "Select <apple> elements that are direct children of <plate> elements.",
@@ -31,7 +29,6 @@ const tasks: Task[] = [
   },
   {
     name: "Class Selectors",
-    "selector-name": "Class selector",
     title: "Select all red apples",
     syntax: ".selector-name",
     hint: 'Select all elements with class="red".',
@@ -43,7 +40,6 @@ const tasks: Task[] = [
   },
   {
     name: "Descendant Selectors",
-    "selector-name": "Descendant selector",
     title: "Select all apples in the plates",
     syntax: "plate apple",
     hint: "Select all <apple> elements inside <plate> elements.",
@@ -62,7 +58,6 @@ const tasks: Task[] = [
   },
   {
     name: "Multiple Selectors",
-    "selector-name": "Multiple selectors",
     title: "Select pickle and apples and bento",
     syntax: "selector, selector, ...",
     hint: "Select all pickle, apples, bento, elements ",
@@ -84,7 +79,6 @@ const tasks: Task[] = [
   },
   {
     name: "ID Selectors",
-    "selector-name": "ID selector",
     title: 'Select the element with ID "special"',
     syntax: "#id-selector",
     hint: "",
@@ -96,7 +90,6 @@ const tasks: Task[] = [
   },
   {
     name: "Pseudo-class Selectors",
-    "selector-name": "Pseudo-class selector",
     title: "Select the first apple on a plate",
     syntax: "apple:first-child",
     hint: "Selects the first <apple> element that is a direct child of any <plate> element.",
@@ -115,7 +108,6 @@ const tasks: Task[] = [
   },
   {
     name: "Attribute Selectors",
-    "selector-name": "Attribute selector",
     title: 'Select all plates with a "for" attribute',
     syntax: "selector[attribute]",
     hint: "",
@@ -137,7 +129,6 @@ const tasks: Task[] = [
   },
   {
     name: "Attribute Selectors With Value",
-    "selector-name": "Attribute selector with value",
     title: 'Select all plates with a "for" attribute equal to "picnic"',
     syntax: 'selector[attribute="value"]',
     hint: "",
@@ -156,7 +147,6 @@ const tasks: Task[] = [
   },
   {
     name: "Adjacent Sibling Selectors",
-    "selector-name": "Adjacent sibling selector",
     title: "Select all apples directly following a plate",
     syntax: "selector + selector",
     hint: "",
@@ -171,7 +161,6 @@ const tasks: Task[] = [
   },
   {
     name: "General Sibling Selectors",
-    "selector-name": "General sibling selector",
     title: "Select all apples following a plate",
     syntax: "selector ~ selector",
     hint: "Selects all <apple> elements that follows a <plate>.",
@@ -187,7 +176,6 @@ const tasks: Task[] = [
   },
   {
     name: "Pseudo-class Selectors: nth-of-type",
-    "selector-name": "Pseudo-class selector: nth-of-type",
     title: "Select the second apple on each plate",
     syntax: "selector:nth-of-type(n)",
     hint: "",
@@ -206,7 +194,6 @@ const tasks: Task[] = [
   },
   {
     name: "Combined Selectors",
-    "selector-name": "Combined selectors",
     title:
       "Select the last apple in every plate after a plate intended for breakfast",
     syntax: "selector[attr=value], selectpr:last-child, selector ~ selector",
@@ -229,7 +216,6 @@ const tasks: Task[] = [
   },
   {
     name: "Combined Selectors 2",
-    "selector-name": "Combined selectors",
     title:
       "Select every third apple in the plates that are not intended for breakfast",
     syntax: "selector:not(selector) selector:pseudo-class(n)",
@@ -250,7 +236,6 @@ const tasks: Task[] = [
   },
   {
     name: "Universal Selectors",
-    "selector-name": "Universal selector",
     title: "Select all elements",
     syntax: "*",
     hint: "",
