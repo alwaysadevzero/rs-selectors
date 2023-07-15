@@ -15,10 +15,7 @@ class EventEmitter {
 
   public off(event: Events, listener: Listener): void {
     if (!this.listeners[event]) return;
-    const callbackIndex = this.listeners[event].indexOf(listener);
-    if (callbackIndex >= 0) {
-      this.listeners[event].splice(callbackIndex, 1);
-    }
+    this.listeners[event] = this.listeners[event].filter((l) => l === listener);
   }
 
   public emit(event: Events, data?: unknown): void {
