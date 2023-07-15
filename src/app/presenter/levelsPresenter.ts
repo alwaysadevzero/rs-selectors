@@ -35,7 +35,7 @@ export default class LevelPresenter {
         this.levelsModel.previousIndex,
         this.levelsModel.currentIndex
       );
-      Semmiter.updateAllWithoutLevel();
+      Semmiter.emit.updateAllWithoutLevel();
     }
   };
 
