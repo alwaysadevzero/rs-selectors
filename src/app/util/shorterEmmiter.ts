@@ -7,6 +7,8 @@ class Semmiter {
   protected eventEmmiter = EventEmitter;
 
   public emit = {
+    skipLevel: () =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.SKIP_LEVEL),
     drawHtml: (htmlCode: string): void =>
       this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_HTML_CODE, htmlCode),
     drawResult: (params: { htmlCode: string; solution: string }): void =>
@@ -75,6 +77,8 @@ class Semmiter {
   };
 
   public on = {
+    drawHtml: (func: (htmlCode: string) => void): void =>
+      this.eventEmmiter.on(this.eventEmmiter.events.DRAW_HTML_CODE, func),
     clearInput: (func: () => void) =>
       this.eventEmmiter.on(this.eventEmmiter.events.CLEAR_INPUT, func),
     drawSkipLevel: (func: (str: string) => void) =>

@@ -2,7 +2,7 @@ import hljs from "highlight.js";
 import styles from "./html.module.css";
 import View from "../../view";
 import PanelView from "../shared/panel/panelView";
-import eventEmmiter from "../../../util/eventEmmiter";
+import Semmiter from "../../../util/shorterEmmiter";
 import parserHtml from "../../../util/parserHtml";
 import "./highlights.css";
 
@@ -20,11 +20,9 @@ export default class HtmlView extends View {
   }
 
   private addEventListener() {
-    eventEmmiter.on(eventEmmiter.events.DRAW_HTML_CODE, this.drawHtmlCode);
+    Semmiter.on.drawHtml(this.drawHtmlCode);
 
-    this.helpButton.addListener("click", () =>
-      eventEmmiter.emit(eventEmmiter.events.SKIP_LEVEL)
-    );
+    this.helpButton.addListener("click", () => Semmiter.emit.skipLevel());
   }
 
   private drawHtmlCode = (html: string): void => {
