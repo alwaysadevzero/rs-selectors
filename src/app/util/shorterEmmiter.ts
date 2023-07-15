@@ -4,9 +4,6 @@ import { LevelStatus } from "../model/enums";
 import { Description } from "../view/main/menu/description/interface";
 
 class Semmiter {
-  updateAllWithoutLevel() {
-    throw new Error("Method not implemented.");
-  }
   protected eventEmmiter = EventEmitter;
 
   public emit = {
