@@ -7,6 +7,8 @@ class Semmiter {
   protected eventEmmiter = EventEmitter;
 
   public emit = {
+    switchLevel: (level: Level) =>
+      this.eventEmmiter.emit(this.eventEmmiter.events.SWITCH_LEVEL, level),
     skipLevel: () =>
       this.eventEmmiter.emit(this.eventEmmiter.events.SKIP_LEVEL),
     drawHtml: (htmlCode: string): void =>

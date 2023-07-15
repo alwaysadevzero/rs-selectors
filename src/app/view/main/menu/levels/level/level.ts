@@ -1,7 +1,7 @@
 import styles from "./level.module.css";
 import View from "../../../../view";
 import { Level } from "../inteface";
-import eventEmmiter from "../../../../../util/eventEmmiter";
+import Semmiter from "../../../../../util/shorterEmmiter";
 import { LevelStatus } from "../../../../../model/enums";
 
 export default class LevelView extends View<"article"> {
@@ -33,7 +33,7 @@ export default class LevelView extends View<"article"> {
 
   private addEventListener(): void {
     this.addListener("click", () => {
-      eventEmmiter.emit(eventEmmiter.events.SWITCH_LEVEL, this.level);
+      Semmiter.emit.switchLevel(this.level);
     });
   }
 
