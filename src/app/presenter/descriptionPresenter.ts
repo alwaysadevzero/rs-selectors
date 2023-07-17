@@ -1,4 +1,5 @@
-import Semmiter from "../util/shorterEmmiter";
+import updateEvents from "../util/events/updateEvents";
+import drawEvents from "../util/events/drawEvents";
 import DescriptionModel from "../model/descriptionModel";
 
 export default class DescriptionPresenter {
@@ -10,10 +11,10 @@ export default class DescriptionPresenter {
   }
 
   private addListener = (): void => {
-    Semmiter.on.updateDescription(this.updateDescription);
+    updateEvents.on.updateDescription(this.updateDescription);
   };
 
   private updateDescription = (): void => {
-    Semmiter.emit.drawDescription(this.descriptionModel.getDescription());
+    drawEvents.emit.drawDescription(this.descriptionModel.getDescription());
   };
 }

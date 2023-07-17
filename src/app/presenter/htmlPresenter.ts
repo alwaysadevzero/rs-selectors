@@ -1,4 +1,5 @@
-import Semmiter from "../util/shorterEmmiter";
+import updateEvents from "../util/events/updateEvents";
+import drawEvents from "../util/events/drawEvents";
 import HtmlModel from "../model/htmlModel";
 
 export default class HtmlPresenter {
@@ -10,11 +11,11 @@ export default class HtmlPresenter {
   }
 
   private addListener = (): void => {
-    Semmiter.on.updateHtml(this.updateHtml);
+    updateEvents.on.updateHtml(this.updateHtml);
   };
 
   private updateHtml = (): void => {
     const htmlcode: string = this.htmlModel.getHtml();
-    Semmiter.emit.drawHtml(htmlcode);
+    drawEvents.emit.drawHtml(htmlcode);
   };
 }

@@ -1,6 +1,6 @@
 import styles from "./levels.module.css";
 import View from "../../../view";
-import eventEmmiter from "../../../../util/eventEmmiter";
+import drawEvents from "../../../../util/events/drawEvents";
 import LevelView from "./level/level";
 import { Level } from "./inteface";
 import { LevelStatus } from "../../../../model/enums";
@@ -15,16 +15,13 @@ export default class LevelsView extends View {
       className: styles.levelsWrapper,
     });
     this.configureView();
-    this.addEventListeners();
+    this.initListeners();
   }
 
-  private addEventListeners = (): void => {
-    eventEmmiter.on(eventEmmiter.events.DRAW_LEVELS, this.drawLevels);
-    eventEmmiter.on(eventEmmiter.events.DRAW_SWITCH_LEVEL, this.switchLevel);
-    eventEmmiter.on(
-      eventEmmiter.events.DRAW_LEVEL_STATUS,
-      this.changeLevelStatus
-    );
+  private initListeners = () => {
+    drawEvents.on.drawLevels(this.drawLevels);
+    drawEvents.on.drawSwitchLevel(this.switchLevel);
+    drawEvents.on.drawLevelStatus(this.changeLevelStatus);
   };
 
   private changeLevelStatus = (params: {
@@ -40,7 +37,6 @@ export default class LevelsView extends View {
       content: "Choose a level",
       className: styles.choose,
     });
-
     this.append(heading, this.levelsWrapper);
   };
 
@@ -57,7 +53,7 @@ export default class LevelsView extends View {
   private switchLevel = (params: {
     previousLevelIndex: number;
     newLevelIndex: number;
-  }): void => {
+  }) => {
     const { previousLevelIndex, newLevelIndex } = params;
     this.levelsArr[previousLevelIndex].removeHighLightLevel();
     this.levelsArr[newLevelIndex].highLightLevel();
@@ -66,7 +62,7 @@ export default class LevelsView extends View {
   private drawLevels = (params: {
     currentLevelIndex: number;
     levels: Level[];
-  }): void => {
+  }) => {
     const { currentLevelIndex, levels } = params;
 
     if (
@@ -76,13 +72,13 @@ export default class LevelsView extends View {
       throw new Error("invalid passed parameters to drawLevels");
     }
     this.levelsWrapper.node.innerHTML = "";
-    this.levelsArr = [];
 
-    for (let i = 0; i < levels.length; i += 1) {
-      const lvl = new LevelView(levels[i]);
-      if (i === currentLevelIndex) lvl.highLightLevel();
-      this.levelsArr.push(lvl);
-    }
+    this.levelsArr = levels.map((level, index): LevelView => {
+      const lvl = new LevelView(level);
+      if (index === currentLevelIndex) lvl.highLightLevel();
+      return lvl;
+    });
+
     this.levelsWrapper.append(...this.levelsArr);
   };
 }

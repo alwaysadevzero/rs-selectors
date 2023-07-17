@@ -18,10 +18,10 @@ export default class ProgressView extends View {
       className: styles.progress,
     });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener(): void {
+  private initListeners() {
     eventEmmiter.on(eventEmmiter.events.DRAW_PROGRESS, this.updateProgress);
 
     this.burger.addListener("click", () =>

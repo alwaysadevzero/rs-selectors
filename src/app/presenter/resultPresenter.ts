@@ -1,4 +1,7 @@
-import Semmiter from "../util/shorterEmmiter";
+// import Semmiter from "../util/shorterEmmiter";
+import drawEvents from "../util/events/drawEvents";
+import updateEvents from "../util/events/updateEvents";
+import gameEvents from "../util/events/gameEvents";
 import ResultModel from "../model/resultModel";
 
 export default class ResultPresenter {
@@ -13,26 +16,26 @@ export default class ResultPresenter {
   }
 
   private addListener = () => {
-    Semmiter.on.updateResult(this.updateResult);
-    Semmiter.on.checkAnswer(this.checkAnswer);
-    Semmiter.on.skipLevel(this.skipLevel);
+    updateEvents.on.updateResult(this.updateResult);
+    gameEvents.on.checkAnswer(this.checkAnswer);
+    gameEvents.on.skipLevel(this.skipLevel);
   };
 
   private skipLevel = () => {
-    Semmiter.emit.drawSkipLevel(this.resultModel.getSolution());
+    drawEvents.emit.drawSkipLevel(this.resultModel.getSolution());
   };
 
   private updateResult = () => {
-    Semmiter.emit.drawResult(this.resultModel.getHtml());
+    drawEvents.emit.drawResult(this.resultModel.getHtml());
   };
 
   private checkAnswer = (input: string) => {
     const answer: boolean = this.resultModel.checkAnswer(input);
     if (answer) {
-      Semmiter.emit.drawRightAnswer();
-      Semmiter.emit.updatepassLevel();
+      drawEvents.emit.drawRightAnswer();
+      updateEvents.emit.updatepassLevel();
     } else {
-      Semmiter.emit.drawWrongAnswer();
+      drawEvents.emit.drawWrongAnswer();
     }
   };
 }

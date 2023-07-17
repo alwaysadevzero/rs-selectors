@@ -1,6 +1,6 @@
 import styles from "./desciption.module.css";
 import View from "../../../view";
-import eventEmmiter from "../../../../util/eventEmmiter";
+import drawEvents from "../../../../util/events/drawEvents";
 import { Description } from "./interface";
 
 export default class DescriptionView extends View {
@@ -17,14 +17,14 @@ export default class DescriptionView extends View {
       className: styles.desciption,
     });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener = (): void => {
-    eventEmmiter.on(eventEmmiter.events.DRAW_DESCRIPTION, this.drawDescription);
+  private initListeners = () => {
+    drawEvents.on.drawDescription(this.drawDescription);
   };
 
-  private drawDescription = (params: Description): void => {
+  private drawDescription = (params: Description) => {
     const { title, syntax, hint, example } = params;
     this.title.node.innerText = title;
     this.syntax.node.innerText = `syntax: ${syntax}`;
@@ -32,20 +32,15 @@ export default class DescriptionView extends View {
     this.example.node.innerText = `example: ${example}`;
   };
 
-  private configureView = (): void => {
+  private configureView = () => {
     const cont = new View({ className: styles.container });
 
-    const title = new View({ tag: "h4", className: styles.title });
-    const syntax = new View({ tag: "kbd", className: styles.syntax });
-    const hint = new View({ tag: "mark", className: styles.hint });
-    const example = new View({ tag: "button", className: styles.example });
+    this.title = new View({ tag: "h4", className: styles.title });
+    this.example = new View({ tag: "kbd", className: styles.syntax });
+    this.hint = new View({ tag: "mark", className: styles.hint });
+    this.syntax = new View({ tag: "button", className: styles.example });
 
-    cont.append(title, example, syntax, hint);
+    cont.append(this.title, this.example, this.syntax, this.hint);
     this.append(cont);
-
-    this.title = title;
-    this.example = example;
-    this.hint = hint;
-    this.syntax = syntax;
   };
 }
