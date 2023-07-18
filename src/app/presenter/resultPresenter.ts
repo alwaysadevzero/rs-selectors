@@ -1,4 +1,3 @@
-// import Semmiter from "../util/shorterEmmiter";
 import drawEvents from "../util/events/drawEvents";
 import updateEvents from "../util/events/updateEvents";
 import gameEvents from "../util/events/gameEvents";
