@@ -1,7 +1,7 @@
 import styles from "./editorInput.module.css";
 import View from "../../../view";
-import Semmiter from "../../../../util/shorterEmmiter";
-import eventEmmiter from "../../../../util/eventEmmiter";
+import drawEvents from "../../../../util/events/drawEvents";
+import gameEvents from "../../../../util/events/gameEvents";
 
 const LINES_NUMBER = 15;
 const TEXT_AREA = [
@@ -30,10 +30,10 @@ export default class InputView extends View<"article"> {
       className: styles.field,
     });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener = (): void => {
+  private initListeners = (): void => {
     this.enterButton.addListener("click", () => this.checkAnswer());
     this.input.addListener("keypress", (event) => {
       const e = event as KeyboardEvent;
@@ -41,12 +41,9 @@ export default class InputView extends View<"article"> {
         this.checkAnswer();
       }
     });
-    Semmiter.on.drawSkipLevel(this.drawSkipLevel);
-    Semmiter.on.clearInput(this.clearInput);
-    eventEmmiter.on(
-      eventEmmiter.events.DRAW_WRONG_ANSWER,
-      this.drawWrongAnswer
-    );
+    drawEvents.on.drawSkipLevel(this.drawSkipLevel);
+    drawEvents.on.drawClearInput(this.clearInput);
+    drawEvents.on.drawWrongAnswer(this.drawWrongAnswer);
   };
 
   private drawSkipLevel = (solution: string) => {
@@ -86,15 +83,16 @@ export default class InputView extends View<"article"> {
   private checkAnswer = (): void => {
     const { value } = this.input.node as HTMLInputElement;
     if (value) {
-      eventEmmiter.emit(eventEmmiter.events.CHECK_ANSWER, value);
+      gameEvents.emit.checkAnswer(value);
     }
   };
 
-  private configureView(): void {
+  private configureView() {
     const input = new View<"input">({
       tag: "input",
       className: styles.input,
     });
+    input.setAttributes({ maxlength: "30" });
 
     const lines = InputView.configureLines();
     lines.node.firstChild?.appendChild(input.node);

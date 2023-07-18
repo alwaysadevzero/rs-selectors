@@ -1,6 +1,7 @@
 import View from "../../../view";
 import styles from "./progress.module.css";
-import eventEmmiter from "../../../../util/eventEmmiter";
+import drawEvents from "../../../../util/events/drawEvents";
+import gameEvents from "../../../../util/events/gameEvents";
 
 export default class ProgressView extends View {
   private progress!: View;
@@ -22,17 +23,17 @@ export default class ProgressView extends View {
   }
 
   private initListeners() {
-    eventEmmiter.on(eventEmmiter.events.DRAW_PROGRESS, this.updateProgress);
+    drawEvents.on.drawProgress(this.updateProgress);
 
-    this.burger.addListener("click", () =>
-      eventEmmiter.emit(eventEmmiter.events.SWITCH_MENU)
-    );
+    this.burger.addListener("click", () => {
+      gameEvents.emit.switchMenu();
+    });
 
     this.nextButton.addListener("click", () => {
-      eventEmmiter.emit(eventEmmiter.events.NEXT_LEVEL);
+      gameEvents.emit.nextLevel();
     });
     this.backButton.addListener("click", () => {
-      eventEmmiter.emit(eventEmmiter.events.BACK_LEVEL);
+      gameEvents.emit.backLevel();
     });
   }
 

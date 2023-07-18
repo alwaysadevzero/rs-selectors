@@ -2,9 +2,10 @@ import hljs from "highlight.js";
 import styles from "./html.module.css";
 import View from "../../view";
 import PanelView from "../shared/panel/panelView";
-import Semmiter from "../../../util/shorterEmmiter";
 import parserHtml from "../../../util/parserHtml";
 import "./highlights.css";
+import drawEvents from "../../../util/events/drawEvents";
+import gameEvents from "../../../util/events/gameEvents";
 
 const LINES_NUMBER = 15;
 
@@ -16,16 +17,16 @@ export default class HtmlView extends View {
   constructor() {
     super({});
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener() {
-    Semmiter.on.drawHtml(this.drawHtmlCode);
+  private initListeners() {
+    drawEvents.on.drawHtml(this.drawHtmlCode);
 
-    this.helpButton.addListener("click", () => Semmiter.emit.skipLevel());
+    this.helpButton.addListener("click", () => gameEvents.emit.skipLevel());
   }
 
-  private drawHtmlCode = (html: string): void => {
+  private drawHtmlCode = (html: string) => {
     this.code.node.innerHTML = "";
 
     const highLightercode: string = hljs.highlight(html, {
