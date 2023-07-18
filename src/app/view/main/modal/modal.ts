@@ -19,8 +19,7 @@ export default class ModalView extends View {
     });
 
     this.modal.addListener("click", (event) => {
-      if (!event?.target) return;
-      if (event.target === this.modal.node) this.disableModal();
+      if (event?.target === this.modal.node) this.disableModal();
     });
     eventEmmiter.on(eventEmmiter.events.GAME_WIN, () => this.enableModal());
   };
