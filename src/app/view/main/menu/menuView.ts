@@ -21,9 +21,9 @@ export default class MenuView extends View<"article"> {
 
   private initListeners() {
     this.resetButton.addListener("click", () => {
-      gameEvents.emit.resetLevels()
+      gameEvents.emit.resetLevels();
     });
-    gameEvents.on.switchMenu(this.switchMenu)
+    gameEvents.on.switchMenu(this.switchMenu);
   }
 
   private switchMenu = () => {

@@ -10,11 +10,11 @@ export default class DescriptionPresenter {
     this.addListener();
   }
 
-  private addListener = (): void => {
+  private addListener = () => {
     updateEvents.on.updateDescription(this.updateDescription);
   };
 
-  private updateDescription = (): void => {
+  private updateDescription = () => {
     drawEvents.emit.drawDescription(this.descriptionModel.getDescription());
   };
 }

@@ -64,7 +64,6 @@ export default class LevelsView extends View {
     levels: Level[];
   }) => {
     const { currentLevelIndex, levels } = params;
-
     if (
       !Array.isArray(levels) ||
       !levels.every((level) => LevelsView.isLevelParams(level))
