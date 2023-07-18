@@ -21,14 +21,14 @@ class UpdateEvents {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS);
-      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_CLEAR_INPUT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION);
     },
     updateAllWithoutLevel: () => {
       this.eventEmmiter.emit(this.eventEmmiter.events.UPADTE_HTML);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_RESULT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_PROGRESS);
-      this.eventEmmiter.emit(this.eventEmmiter.events.CLEAR_INPUT);
+      this.eventEmmiter.emit(this.eventEmmiter.events.DRAW_CLEAR_INPUT);
       this.eventEmmiter.emit(this.eventEmmiter.events.UPDATE_DESCRIPTION);
     },
   };
