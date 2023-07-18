@@ -2,7 +2,7 @@ import styles from "./result.module.css";
 import "./result.css";
 import View from "../../view";
 import parserHtml from "../../../util/parserHtml";
-import eventEmmiter from "../../../util/eventEmmiter";
+import drawEvents from "../../../util/events/drawEvents";
 
 export default class ResultView extends View<"article"> {
   private drawSection!: View;
@@ -15,15 +15,12 @@ export default class ResultView extends View<"article"> {
       className: styles.result,
     });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener(): void {
-    eventEmmiter.on(eventEmmiter.events.DRAW_RESULT, this.drawResult);
-    eventEmmiter.on(
-      eventEmmiter.events.DRAW_RIGHT_ANSWER,
-      this.drawRightAnswer
-    );
+  private initListeners() {
+    drawEvents.on.drawResult(this.drawResult);
+    drawEvents.on.drawRightAnswer(this.drawRightAnswer)
   }
 
   private drawRightAnswer = () => {
@@ -33,7 +30,7 @@ export default class ResultView extends View<"article"> {
   private drawResult = (params: {
     htmlCode: string;
     solution: string;
-  }): void => {
+  }) => {
     this.drawSection.node.innerHTML = params.htmlCode;
     this.target = Array.from(
       this.drawSection.node.querySelectorAll(params.solution)
@@ -41,13 +38,12 @@ export default class ResultView extends View<"article"> {
     this.target.map((target) => target.classList.add("target"));
   };
 
-  private configureView(): void {
+  private configureView() {
     const table = new View({ className: styles.table });
     const tableEdge = new View({ className: styles["table-edge"] });
     this.drawSection = new View({ className: styles.section });
 
     table.append(tableEdge, this.drawSection);
-
     this.append(table);
   }
 }

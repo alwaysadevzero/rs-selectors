@@ -10,10 +10,10 @@ export default class ModalView extends View {
   constructor() {
     super({ className: styles.modal });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener = (): void => {
+  private initListeners = () => {
     this.exitButton.addListener("click", () => {
       this.disableModal();
     });
@@ -22,38 +22,34 @@ export default class ModalView extends View {
       if (!event?.target) return;
       if (event.target === this.modal.node) this.disableModal();
     });
-
     eventEmmiter.on(eventEmmiter.events.GAME_WIN, () => this.enableModal());
   };
 
-  private disableModal = (): void => {
+  private disableModal = () => {
     this.modal.removeAttributes("open");
     this.removeClass(styles.open);
   };
 
-  private enableModal = (): void => {
+  private enableModal = () => {
     this.modal.setAttributes({ open: "" });
     this.addClass(styles.open);
   };
 
-  private configureView = (): void => {
-    const modal = new View({ tag: "dialog", className: styles.modal });
-    modal.setAttributes({ id: "modal" });
+  private configureView = () => {
+    this.modal = new View({ tag: "dialog", className: styles.modal });
+    this.modal.setAttributes({ id: "modal" });
 
     const article = new View({ tag: "article", className: styles.article });
     const h2 = new View({ tag: "h2", content: "You Won!" });
-    const exitButton = new View({ tag: "a" });
-    exitButton.setAttributes({
+    this.exitButton = new View({ tag: "a" });
+    this.exitButton.setAttributes({
       "aria-label": "Close",
       class: "close",
       "data-target": "modal",
     });
 
-    this.append(modal);
-    modal.append(article);
-    article.append(exitButton, h2);
-
-    this.modal = modal;
-    this.exitButton = exitButton;
+    this.append(this.modal);
+    this.modal.append(article);
+    article.append(this.exitButton, h2);
   };
 }

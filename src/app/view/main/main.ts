@@ -8,7 +8,7 @@ import MenuView from "./menu/menuView";
 import ResultView from "./result/resultView";
 import ModalView from "./modal/modal";
 
-const footerRawHTML = `
+const FOOTER_HTML = `
   <div class="container">
       <ul class="footer__links">
           <li>
@@ -33,7 +33,7 @@ export default class MainView extends View {
     this.configureView();
   }
 
-  private configureView(): void {
+  private configureView() {
     const leftSide = new View({ className: styles.leftSide });
 
     const title = new View({
@@ -50,7 +50,7 @@ export default class MainView extends View {
     wrapper.append(editor, html);
 
     const footer = new View({ tag: "footer", className: styles.footer });
-    footer.node.innerHTML = parserHtml.parse(footerRawHTML);
+    footer.node.innerHTML = parserHtml.parse(FOOTER_HTML);
     leftSide.append(title, result, wrapper, footer);
 
     const rightSide = new View({ className: styles.rightSide });

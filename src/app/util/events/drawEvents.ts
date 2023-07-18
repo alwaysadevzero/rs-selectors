@@ -61,6 +61,13 @@ class DrawEvents {
     drawLevelStatus: (
       func: (params: { status: LevelStatus; index: number }) => void
     ) => this.eventEmmiter.on(this.eventEmmiter.events.DRAW_LEVEL_STATUS, func),
+    drawResult: (func: (params : {htmlCode: string; solution: string}) => void) =>
+      this.eventEmmiter.on(this.eventEmmiter.events.DRAW_RESULT, func),
+    drawRightAnswer: (func: () => void) =>
+      this.eventEmmiter.on(
+      this.eventEmmiter.events.DRAW_RIGHT_ANSWER,
+      func
+    ),
   };
 }
 

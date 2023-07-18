@@ -3,12 +3,11 @@ import View from "../../view";
 import LevelsView from "./levels/levelsView";
 import ProgressView from "./progress/progress";
 import DescriptionView from "./description/description";
-import eventEmmiter from "../../../util/eventEmmiter";
+import gameEvents from "../../../util/events/gameEvents";
 
 export default class MenuView extends View<"article"> {
   private resetButton!: View;
-
-  private desciption!: View;
+  private description!: View;
   private levels!: View;
 
   constructor() {
@@ -17,27 +16,27 @@ export default class MenuView extends View<"article"> {
       className: styles.menu,
     });
     this.configureView();
-    this.addEventListener();
+    this.initListeners();
   }
 
-  private addEventListener(): void {
+  private initListeners() {
     this.resetButton.addListener("click", () => {
-      eventEmmiter.emit(eventEmmiter.events.RESET_LEVELS);
+      gameEvents.emit.resetLevels()
     });
-    eventEmmiter.on(eventEmmiter.events.SWITCH_MENU, this.switchMenu);
+    gameEvents.on.switchMenu(this.switchMenu)
   }
 
-  private switchMenu = (): void => {
+  private switchMenu = () => {
     this.levels.toggleClass(styles.displayNone);
-    this.desciption.toggleClass(styles.displayNone);
+    this.description.toggleClass(styles.displayNone);
   };
 
-  private configureView(): void {
+  private configureView() {
     const header = new View({ className: styles.header });
     const progress = new ProgressView();
-    const levels = new LevelsView();
-    levels.addClass(styles.displayNone);
-    const desciption = new DescriptionView();
+    this.levels = new LevelsView();
+    this.levels.addClass(styles.displayNone);
+    this.description = new DescriptionView();
 
     header.append(progress);
     this.resetButton = new View({
@@ -46,9 +45,6 @@ export default class MenuView extends View<"article"> {
       content: "Reset Progress",
     });
 
-    this.desciption = desciption;
-    this.levels = levels;
-
-    this.append(header, desciption, levels, this.resetButton);
+    this.append(header, this.description, this.levels, this.resetButton);
   }
 }
