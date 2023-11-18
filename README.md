@@ -2,7 +2,7 @@
 
 This is a pet project that is an analog of <https://flukeout.github.io/>
 
-Deploy :
+Deploy : [link](https://rolling-scopes-school.github.io/alwaysadevzero-JSFE2023Q1/selectors/)
 
 For run this project locally you should:
 
