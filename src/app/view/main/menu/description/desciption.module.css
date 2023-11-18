@@ -1,0 +1,19 @@
+.container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.title {
+    margin: 0;
+}
+.hint {
+    display: block;
+    width: fit-content;
+}
+.example {
+    display: block;
+    margin: 0;
+}

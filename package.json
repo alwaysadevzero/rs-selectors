@@ -1,0 +1,43 @@
+{
+  "author": "Anton Tarakanov  (https://github.com/alwaysadevzero)",
+  "scripts": {
+    "build": "webpack --progress",
+    "start": "webpack-dev-server",
+    "lint": "eslint ./src"
+  },
+  "devDependencies": {
+    "@types/css-modules": "^1.0.2",
+    "@types/sanitize-html": "^2.9.0",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "add": "latest",
+    "css-loader": "^6.8.1",
+    "eslint": "latest",
+    "eslint-config-airbnb-typescript": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-webpack-plugin": "^4.0.1",
+    "html-loader": "latest",
+    "prettier": "^2.8.8",
+    "prettier-webpack-plugin": "^1.2.0",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "ts-loader": "latest",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "copy-webpack-plugin": "latest",
+    "webpack-cli": "^5.1.4",
+    "webpack": "^5.88.1",
+    "html-webpack-plugin": "latest",
+    "@picocss/pico": "^1.5.10",
+    "highlight.js": "^11.8.0",
+    "pico-css": "^4.0.1",
+    "sanitize-html": "^2.11.0",
+    "sass-embedded": "^1.63.6",
+    "sass-resources-loader": "^2.2.5",
+    "webpack-dev-server": "latest"
+  }
+}

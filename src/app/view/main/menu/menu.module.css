@@ -1,0 +1,19 @@
+.menu {
+    height: 100%;
+    margin: 0;
+    padding: 20px !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex-grow: 0.5;
+}
+
+.displayNone {
+    display: none;
+}
+
+.resetButton{
+    margin-top: auto;
+}

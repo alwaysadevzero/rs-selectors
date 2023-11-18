@@ -1,0 +1,46 @@
+:root{
+    --skipped-color: #ac110cea;
+    --passed--color: #2bff00;
+    --current-color: #3a3a3a;
+}
+
+.level{
+    padding-left: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    justify-content: flex-start;
+    user-select: none;
+}
+
+.position{
+    font-size: 1rem;
+}
+.level::before{
+    flex-shrink: 0;
+    padding-left: 5px;
+    margin-top: 8px;
+    margin-right: 10px;
+    content: "";
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+}
+
+.active{
+    background-color: var(--current-color);
+}
+.skipped::before{
+    background-color: var(--skipped-color);
+}
+.passed::before{
+    background-color: var(--passed--color);
+}
+.pending::before{
+    display: block;
+    background-color: var(--color);
+}
+
+.name {
+    margin-left: 10px;
+}

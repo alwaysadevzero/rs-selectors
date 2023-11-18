@@ -1,0 +1,15 @@
+footer {
+    margin-top: 20px;
+}
+
+.footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+    margin-bottom: 0;
+}
+
+.footer__links li {
+    list-style-type: none;
+}

@@ -1,0 +1,93 @@
+.html{
+    flex-grow: 0.5;
+    max-width: 550px;
+    min-width: 300px;
+    position: relative;
+    box-sizing: content-box;
+    padding: 0;
+    margin: 0;
+    font-size: 0px;
+}
+
+.panel {
+    font-size: 20px;
+}
+
+
+.htmlCode{
+    margin-top: 0;
+    background-color: var(--secondary)
+}
+.code{ 
+    padding: 0;
+    width: 100%;
+    line-height: 28.5px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+.pre {
+    height: 100%;
+    padding: 0;
+    counter-reset: line;
+    position: relative;
+    padding-left: 35px;
+    height: fit-content;
+    margin-bottom: 0;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.pre > span {
+    height: 30px !important;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400px;
+    margin-left: 20px;
+}
+
+
+
+
+.pre > span:before {
+    background-color: #DDD;
+    color: rgb(82, 80, 80);
+    position: absolute;
+    left: 0;
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 40px;
+    display: flex;
+
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0 5px;
+    text-align: right;
+    display: flex;
+    justify-content: space-around;
+    flex: 0 0 auto;
+}
+
+.helpButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1 ;
+    width: fit-content;
+}
+
+
+@media (max-width: 1400px) {
+    .panel{
+        display: none;
+    }
+    .pre > span {
+        font-size: 15px;
+    }
+    .helpButton {
+        z-index: 0;
+        position: relative;
+        width: 100%;
+    }
+    
+}
